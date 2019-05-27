@@ -1,0 +1,62 @@
+<import src="/zanui/toast/index.wxml"></import>
+<import src="../selectUser/selectUser"></import>
+<view class="container page__bd" wx:if="{{!showEditUser}}">
+    <view class="weui-cells__title"></view>
+    <form bindsubmit="formSubmit" id="formSubmit" reportSubmit="true">
+        <view class="weui-cells__title"></view>
+        <view class="weui-cells weui-cells_after-title">
+            <view catchtap="showEditUser" class="weui-cell weui-cell_access" style="height:60px;line-height:60px;">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">发送人</view>
+                </view>
+                <view class="weui-cell__bd special_flex" style="margin-right:25rpx;">
+                    <view class="weui-cell__ft weui-cell__ft_in-access">{{app[type].list[index].name}}</view>
+                    <view class="weui-cell__hd" style="width: 50px;height: 50px;">
+                        <image mode="aspectFill" src="{{app[type].list[index].avatar?app[type].list[index].avatar:'https://wsgroup.hmset.com/images/wjtq/other/default_avatar.png'}}" style="width: 50px;height: 50px;"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label">类型</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="typeChange" range="{{types}}" rangeKey="name">
+                        <view wx:if="{{app[type].list[index].typeIndex}}">
+                            <view class="weui-select weui-select_in-select-after" style="text-align:right;">{{types[app[type].list[index].typeIndex].name}}</view>
+                        </view>
+                        <view wx:else>
+                            <view class="weui-select weui-select_in-select-after" style="color: #999;text-align:right;">请选择</view>
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label">状态</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="statusChange" range="{{status}}" rangeKey="name">
+                        <view wx:if="{{app[type].list[index].statusIndex}}">
+                            <view class="weui-select weui-select_in-select-after" style="text-align:right;">{{status[app[type].list[index].statusIndex].name}}</view>
+                        </view>
+                        <view wx:else>
+                            <view class="weui-select weui-select_in-select-after" style="color: #999;text-align:right;">请选择</view>
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select" wx:if="{{app[type].list[index].statusIndex==0}}">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label" style="width: 400rpx;">通话时长(分:秒)</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input bindinput="bindContent" class="weui-input" id="videoLength" name="videoLength" placeholder="如  00:23" style="" value="{{app[type].list[index].videoLength}}"></input>
+                </view>
+            </view>
+        </view>
+        <button class="weui-btn" disabled="{{disabled}}" formType="submit" style="width: 80%;" type="primary">保存</button>
+    </form>
+</view>
+<template is="zan-toast" data="{{zanToast:zanToast}}"></template>
+<template is="selectUser" data="{{showEditUser:showEditUser,list:list}}"></template>

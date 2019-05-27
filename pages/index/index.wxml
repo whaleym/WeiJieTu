@@ -1,0 +1,176 @@
+<import src="/wux/notification/notification.wxml"></import>
+<import src="../../wux/dialog/dialog.wxml"></import>
+<template is="notification" data="{{...$wux.notification}}"></template>
+<view class="container page__bd" style="padding-bottom:12px;" wx:if="{{name!='jietuwang'}}">
+    <!-- <block wx:if="{{lists.length&&platform!='ios'}}">
+        <view class="grids" style="padding:30rpx 0;margin-top:30rpx;background-color:#fff;" wx:if="{{!(isVip||comefrom)&&!is_verify}}">
+            <navigator style="float: left;position: relative;" url="/pages/about/about?type=vip">
+                <image mode="aspectFit" src="../../styles/vip.png" style="width: 750rpx;height: 300rpx;"></image>
+            </navigator>
+            <view style="clear: both;"></view>
+        </view>
+        <view class="grids" style="padding:30rpx 0;margin-top:30rpx;background-color:#fff;" wx:if="{{isVip&&!is_verify}}">
+            <view bindtap="showZhuanqian" style="float: left;position: relative;">
+                <image mode="aspectFit" src="../../styles/yaoqin_vip.jpeg" style="width: 750rpx;height: 300rpx;"></image>
+            </view>
+            <view style="clear: both;"></view>
+        </view>
+    </block> -->
+        <scroll-view scrollX class="grids" style="padding:30rpx 0;margin-top:30rpx;background-color:#fff;">
+            <view class="titleNavContainer">
+                <navigator class="titleNav" wx:for="{{navLists}}" wx:key="index" target="miniProgram" open-type="navigate" app-id="{{item.appid}}">
+                    <image src="https://wsgroup.hmset.com/images/wjtq/share/{{item.img}}" mode="widthFix" style="width: 321rpx;"></image>
+                </navigator>
+            </view>
+            <view style="clear: both;"></view>
+        </scroll-view>
+    <view class="grids" style="padding:30rpx 0;margin-top:30rpx;background-color:#fff;" wx:for="{{lists}}" wx:key="{{item.index}}">
+        <view style="padding-left:30rpx;">{{item.title}}</view>
+        <block wx:if="{{isLogin}}">
+            <block wx:for="{{item.list}}" wx:for-index="idx" wx:key="{{item.idx}}">
+            <!--
+                <view bindtap="{{item.event}}" style="float: left;position: relative;" wx:if="{{item.type=='tap'}}">
+                    <view class="grid" hoverClass="weui-grid_active" style="background-color: {{item.background}};">
+                        <image class="weui-grid__icon" src="{{item.pic}}?v={{version}}"></image>
+                    </view>
+                    <view>
+                        <view class="weui-grid__label">{{item.name}}截图</view>
+                    </view>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/new_1.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 30rpx;top:16rpx;" wx:if="{{item.new}}"></image>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/hot_1.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 30rpx;top:16rpx;" wx:if="{{item.hot}}"></image>
+                </view>
+            -->
+                <view bindtap="UnlockItem" data-unlockindex="{{item.unlockCount}}" style="float: left;position: relative;" wx:if="{{item.showLocked}}">
+                    <view class="grid" hoverClass="weui-grid_active">
+                        <image class="weui-grid__icon" src="{{item.pic}}?v={{version}}"></image>
+                    </view>
+                    <view>
+                        <view class="weui-grid__label">{{item.name}}截图</view>
+                    </view>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/new_1.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 30rpx;top:16rpx;" wx:if="{{item.new}}"></image>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/hot_1.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 30rpx;top:16rpx;" wx:if="{{item.hot}}"></image>
+                    <image src="../../assets/imgs/locked.png" style="width: 60rpx;height: 60rpx;position: absolute;right: 60rpx;bottom:40rpx;" wx:if="{{item.showLocked}}"></image>
+                </view>
+                <navigator bindtap="gotoUrl" style="float: left;position: relative;" url="{{item.url}}" wx:elif="{{item.type=='link'}}">
+                    <view class="grid" hoverClass="weui-grid_active">
+                        <image class="weui-grid__icon" src="{{item.pic}}?v={{version}}"></image>
+                    </view>
+                    <view>
+                        <view class="weui-grid__label">{{item.name}}截图</view>
+                    </view>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/new_1.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 30rpx;top:16rpx;" wx:if="{{item.new}}"></image>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/hot_1.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 30rpx;top:16rpx;" wx:if="{{item.hot}}"></image>
+                </navigator>
+            </block>
+        </block>
+        <block wx:else>
+            <block wx:for="{{item.list}}" wx:for-index="idx" wx:key="{{item.idx}}">
+                <login-button bind:success="getUserInfo_tap" clearButton="{{true}}" clearType="{{true}}" data-event="{{item.event}}" style="float: left;position: relative;" wx:if="{{item.type=='tap'}}">
+                    <view class="grid" hoverClass="weui-grid_active" style="background-color: {{item.background}};">
+                        <image class="weui-grid__icon" src="{{item.pic}}?v={{version}}"></image>
+                    </view>
+                    <view>
+                        <view class="weui-grid__label">{{item.name}}截图</view>
+                    </view>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/new_1.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 30rpx;top:16rpx;" wx:if="{{item.new}}"></image>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/hot_1.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 30rpx;top:16rpx;" wx:if="{{item.hot}}"></image>
+                </login-button>
+                <login-button bind:success="getUserInfo_navigate" clearButton="{{true}}" clearType="{{true}}" data-url="{{item.url}}" style="float: left;position: relative;" wx:elif="{{item.type=='link'}}">
+                    <view class="grid" hoverClass="weui-grid_active">
+                        <image class="weui-grid__icon" src="{{item.pic}}?v={{version}}"></image>
+                    </view>
+                    <view>
+                        <view class="weui-grid__label">{{item.name}}截图</view>
+                    </view>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/new_1.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 30rpx;top:16rpx;" wx:if="{{item.new}}"></image>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/hot_1.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 30rpx;top:16rpx;" wx:if="{{item.hot}}"></image>
+                </login-button>
+            </block>
+        </block>
+        <view style="clear: both;"></view>
+    </view>
+</view>
+<view class="container page__bd" style="padding-top: 10px;" wx:else>
+    <view style="">
+        <view class="grid-view">
+            <view class="bigItem" style="background-color:{{item.background}};" wx:for="{{list}}" wx:for-index="idx" wx:key="{{item.idx}}">
+                <navigator class="column_flex" style="height: 100%;" url="{{item.url}}">
+                    <image src="{{item.pic}}?v={{version}}" style="width: 116rpx;height: 116rpx;margin: 0;"></image>
+                    <view style="color: #fff;font-size:16px;margin: 10rpx 0 0 0;">{{item.name}}截图</view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <view class="flex_col_center" style="padding-left: 34rpx;margin-top: 100rpx;padding-bottom:20rpx;font-size: 16px;color: #333;border-bottom: 1rpx solid #ccc;" wx:if="{{!is_verify}}">
+        <image src="https://wsgroup.hmset.com/images/wjtq/other/tuijian.png" style="height:46rpx;width:46rpx;margin-right: 10rpx;"></image>
+        <text>精品小程序推荐</text>
+    </view>
+    <view style="" wx:if="{{!is_verify}}">
+        <view class="grids">
+            <block wx:for="{{tuijian}}" wx:for-index="idx" wx:key="{{item.idx}}">
+                <view catchtap="{{item.event}}" style="float: left;" wx:if="{{item.type=='tap'}}">
+                    <view class="grid" hoverClass="weui-grid_active" style="background-color: {{item.background}};width:128rpx;height: 128rpx;margin:30rpx 29.5rpx 0 29.5rpx;">
+                        <image class="weui-grid__icon" src="{{item.pic}}?v={{version}}" style="width:52rpx;height:52rpx;padding-top:38rpx;"></image>
+                    </view>
+                    <view>
+                        <view class="weui-grid__label">{{item.name}}截图</view>
+                    </view>
+                </view>
+                <view bindtap="go_tuijian" data-url="{{item.url}}" style="float: left;position: relative;" wx:elif="{{item.type=='link'}}">
+                    <view class="grid" hoverClass="weui-grid_active" style="background-color:{{item.background}};width:128rpx;height: 128rpx;margin:30rpx 29.5rpx 0 29.5rpx;">
+                        <image class="weui-grid__icon" src="{{item.pic}}?v={{version}}" style="width:52rpx;height:52rpx;padding-top:38rpx;"></image>
+                    </view>
+                    <view>
+                        <view class="weui-grid__label">{{item.name}}截图</view>
+                    </view>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/new_red.png" style="width: 60rpx;height: 35rpx;position: absolute;right: 16rpx;top:16rpx;" wx:if="{{item.new}}"></image>
+                </view>
+            </block>
+            <view style="clear: both;"></view>
+        </view>
+    </view>
+</view>
+<view wx:if="{{!is_verify}}">
+    <!--<view bindtap="close" class="drawer_screen" wx:if="{{showModalStatus}}"></view>-->
+    <view catchtouchmove="move" class="drawer_screen" wx:if="{{showModalStatus}}"></view>
+    <view catchtouchmove="move" animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+        <view class="drawer_content flex_col_center" style="flex-direction: column;justify-content: space-around;">
+            <view class=""><text style="font-size:50rpx;">本平台生成的内容仅供娱乐，请遵守法律法规，请勿用于违法途径。\n授权登录可获得最佳体验</text></view>
+        </view>
+        <!--
+        <view bindtap="close" style="position: absolute;right:-35rpx;top:-35rpx;">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/guanbi3.png" style="width:70rpx;height:70rpx;"></image>
+        </view>
+        -->
+        <button type="default" class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"></button>
+    </view>
+</view>
+<zhuanqian showZhuanqian="{{showZhuanqian}}" wx:if="{{showZhuanqian}}"></zhuanqian>
+<view class="jionMini_box" wx:if="{{showJoinMini}}">
+    <view class="jionMini_cover"></view>
+    <view bindtap="joinMiniConfirm" class="jionMini_dialog">
+        <image mode="widthFix" src="/styles/weijietuqi_guide.png" style="width:750rpx;"></image>
+    </view>
+</view>
+<view wx:if="{{showUnlock}}">
+    <view catchtouchmove="move" class="drawer_screen" ></view>
+    <view catchtouchmove="move" animation="{{animationData}}" class="drawer_box" style="transform: none;">
+        <view class="drawer_content flex_col_center">
+            <view style="font-size:36rpx;text-align:center;">
+                <text>该软件为免费软件，需要您的帮助。\n只要您愿意分享至微信群，就可以开启以下功能:{{unlockStr}}</text>
+            </view>
+        </view>
+        <view bindtap="closeUnlock" style="position: absolute;right:-35rpx;top:-35rpx;">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/guanbi3.png" style="width:70rpx;height:70rpx;"></image>
+        </view>        
+        <button type="primary" class="share_btn" open-type="share" bindtap="unlockShare">好的</button>
+    </view>
+</view>
+<view wx:if="{{showAdvert}}">
+    <view catchtouchmove="move" class="drawer_screen" >
+        <navigator style="margin:80rpx auto;width:599rpx;height:966rpx" target="miniProgram" open-type="navigate" app-id="{{advertId}}">
+            <image src="https://wsgroup.hmset.com/images/wjtq/share/{{advertImg}}" style="width:100%;height:100%" />
+        </navigator>
+        <image bindtap="closeAdvert" src="../../assets/imgs/close.png" style="width: 50rpx;height: 50rpx;left: 650rpx;top: 60rpx;position: fixed;" />
+    </view>
+</view>

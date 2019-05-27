@@ -1,0 +1,17 @@
+@import "../../__wuBaseWxss__/1.wxss";
+
+@import "../../__wuBaseWxss__/2.wxss";
+
+.message-item {
+    margin-top: 28rpx;
+}
+
+.fail-view {
+    float: left;
+    margin: 16rpx 12rpx 0 0;
+}
+
+.fail-image {
+    width: 44rpx;
+    height: 44rpx;
+}

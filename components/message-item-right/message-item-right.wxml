@@ -1,0 +1,22 @@
+<view catchtap="tapMessage" class="message-item b_flex end_flex" data-index="{{index}}">
+    <view class="chat-container chat-container__right">
+        <view class="a_flex">
+            <view class="fail-view" wx:if="{{isFail}}">
+                <image class="fail-image" src="https://wsgroup.hmset.com/images/wjtq/other/fasongshibai.png"></image>
+            </view>
+            <slot name="left"></slot>
+            <view class="a_flex content-container" style="background: {{backgroundColor}}">
+                <slot name="content"></slot>
+                <view class="shade-view {{isAndroid?'shade-android':''}}" wx:if="{{border}}"></view>
+            </view>
+        </view>
+        <block wx:if="{{showArrow}}">
+            <view class="chat-arrow__right" style="border-left-color: {{arrowColor||backgroundColor}}"></view>
+            <view class="chat-arrow-border chat-arrow-border__right {{isAndroid?'arrow-border-android':''}}"></view>
+        </block>
+    </view>
+    <view class="message-user-avatar avatar-right">
+        <image lazyload="true" mode="aspectFill" src="{{avatar}}"></image>
+        <view class="avatar-shade"></view>
+    </view>
+</view>

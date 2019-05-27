@@ -1,0 +1,14 @@
+<view class="container page__bd">
+    <view class="weui-cells__title"></view>
+    <form bindsubmit="formSubmit" id="formSubmit" reportSubmit="true" style="width: 100%;">
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <textarea bindinput="bindLikes" maxlength="800" name="likes" placeholder="请输入点赞人的昵称，中间用逗号隔开。如张三,李四,王五" style="height: 80px;margin: 8px 0;" value="{{detail.likes}}"></textarea>
+                </view>
+            </view>
+        </view>
+        <button bindtap="random" class="weui-btn" style="width: 80%;" type="default">随机加一个</button>
+        <button class="weui-btn" formType="submit" style="width: 80%;" type="primary">保存</button>
+    </form>
+</view>

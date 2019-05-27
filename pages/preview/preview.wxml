@@ -1,0 +1,36 @@
+<import src="/zanui/toast/index.wxml"></import>
+<view class="container page__bd" style="position: relative;" wx:if="{{pic_url}}">
+    <view class="flex_row_center">
+        <image lazyload="true" mode="aspectFit" src="{{pic_url}}" style="width:{{width}}rpx;max-width:750rpx;height: {{height}}rpx;margin:0 {{margin}}rpx;margin-top: 30rpx;"></image>
+        <!--
+        <image bindtap="preview" lazyload="true" mode="aspectFit" src="{{pic_url}}" style="width:{{width}}rpx;max-width:750rpx;height: {{height}}rpx;margin:0 {{margin}}rpx;margin-top: 30rpx;"></image>
+        -->
+    </view>
+    <view style="margin-top: 30rpx;height: 230rpx;">
+        <form bindsubmit="save" reportSubmit="true">
+            <button class="weui-btn" formType="submit" style="width:600rpx;height: 88rpx;line-height:88rpx;" type="primary">
+                保存到相册
+            </button>
+        </form>
+        <form bindsubmit="select" reportSubmit="true">
+            <button class="weui-btn" formType="submit" style="width:600rpx;height: 88rpx;line-height:88rpx;margin-top: 20rpx;" type="default" wx:if="{{!isVip&&!is_verify&&platform!='ios'}}">
+          开通VIP去水印
+        </button>
+        </form>
+    </view>
+    <view wx:if="{{showGetPhoneNumber}}">
+        <view catchtouchmove="move" class="drawer_screen" ></view>
+        <view catchtouchmove="move" animation="{{animationData}}" class="drawer_box" style="transform: none;">
+            <view class="drawer_content flex_col_center">
+                <view style="font-size:36rpx;text-align:center;">
+                    <text>您是第一次使用“保存到相册”功能，需先注册手机号！\n\n点击下方按钮就可快速注册！</text>
+                </view>
+            </view>
+            <view bindtap="hideGetPhoneNumber" style="position: absolute;right:-35rpx;top:-35rpx;">
+                <image src="https://wsgroup.hmset.com/images/wjtq/other/guanbi3.png" style="width:70rpx;height:70rpx;"></image>
+            </view>
+            <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" type="primary" class="share_btn">注册并保存到相册</button>
+        </view>
+    </view>
+</view>
+<template is="zan-toast" data="{{zanToast:zanToast}}"></template>

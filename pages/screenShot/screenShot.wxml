@@ -1,0 +1,27 @@
+<view class="container">
+    <view class="tips-container">
+        <view class="flex_center">
+            <image lazyload="true" src="{{list['left']}}" style="width:310rpx;height:551.5rpx;"></image>
+            <image lazyload="true" src="https://wsgroup.hmset.com/images/wjtq/other/jiantou.png" style="width:80rpx;height:80rpx;margin: 0 10rpx;"></image>
+            <image lazyload="true" src="{{list['right']}}" style="width:310rpx;height:551.5rpx;"></image>
+        </view>
+        <view class="control-area">
+            <view class="weui-cells weui-cells_form" hidden="{{!setUnread}}">
+                <view class="weui-cell">
+                    <view class="weui-cell__hd">
+                        <label class="weui-label">消息未读数</label>
+                    </view>
+                    <view class="weui-cell__bd">
+                        <input bindinput="bindUnreadInput" class="weui-input unread-input" pattern="[0-9]*" placeholder="请输入消息未读数" type="number"></input>
+                    </view>
+                </view>
+            </view>
+            <view class="btn-area">
+                <button bindtap="selectScreenshot" class="weui-btn" type="primary">选择截图</button>
+            </view>
+        </view>
+    </view>
+    <view class="canvas-container">
+        <canvas canvasId="navCanvas" class="nav-canvas" style="height:{{screenshotHeight}}"></canvas>
+    </view>
+</view>

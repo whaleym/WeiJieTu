@@ -1,0 +1,99 @@
+<import src="../../../item/empty.wxml"></import>
+<import src="../../../item/messageItem.wxml"></import>
+<import src="/zanui/toast/index.wxml"></import>
+<import src="../../../../wux/dialog/dialog.wxml"></import>
+<template is="dialog" data="{{...$wux.dialog}}"></template>
+<view bindlongtap="toggleDialog" class="container page__bd" style="background:url({{bg}}) no-repeat center center fixed;background-size: cover;-webkit-background-size: cover; -moz-background-size: cover;-o-background-size: cover;{{list.length>0?'':'background-color:#fff;'}}">
+    <block wx:if="{{list.length>0}}">
+        <message-item app="weixin" bindtapmessage="operateMessage" customBackground="{{!!bg}}" index="{{index}}" isAndroid="{{isAndroid}}" item="{{message}}" maxHeight="{{0.3713}}" maxWidth="{{0.3589}}" name="{{name}}" showName="{{1}}" system="{{system}}" type="qunliao" wx:for="{{list}}" wx:for-item="message" wx:key="*this"></message-item>
+    </block>
+    <view class="flex_center" style="height:1000rpx;" wx:else>
+        <view class="weui-msg__icon-area" style="">
+            <image lazyload="true" src="https://wsgroup.hmset.com/images/wjtq/other/nocontent_list.png" style="width: 588rpx;height:269rpx;"></image>
+        </view>
+    </view>
+    <view bindtap="toggleDialog" class="flex_col_center" id="input-bg" style="position:fixed;bottom:0;width:100%;height:100.14rpx;background-color:#f5f5f7;border-top: 1.04rpx solid #d9d9d9;z-index:5;">
+        <view style="width: 70rpx;height: 57.64rpx">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin.png" style="width:56.33rpx;height: 56.33rpx;margin-left:9.375rpx;"></image>
+        </view>
+        <view style="height:70.93rpx;width:503.91rpx;border-radius:4px;border:2.09rpx solid #ddd;background-color: #fcfcfc;margin-left:18.78rpx;"></view>
+        <view style="width: 56.33rpx;height: 56.33rpx;">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/biaoqinga.png" style="width:57.64rpx;height: 57.64rpx;margin-left:18.5rpx;"></image>
+        </view>
+        <view style="width: 70rpx;height: 57.64rpx;">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/duihuatianjia1.png" style="width:56.33rpx;height: 56.33rpx;margin-left:36.09rpx"></image>
+        </view>
+    </view>
+    <navigator style="position:fixed;right:0;bottom:100.14rpx;width:100px;height:100px;z-index:4;" url="/pages/about/about?type=vip" wx:if="{{!isVip&&platform!='ios'}}">
+        <image src="/styles/watermark.png" style="width:100%;height:100%;"></image>
+    </navigator>
+</view>
+<view class="zan-dialog {{showDialog?'zan-dialog--show':''}}">
+    <view bindtap="toggleDialog" class="zan-dialog__mask"></view>
+    <view class="zan-dialog__container">
+        <view class="weui-grids">
+            <view catchtap="itemClick" class="weui-grid" data-index="0" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/shezhi.png"></image>
+                <view class="weui-grid__label">群聊设置</view>
+            </view>
+            <view catchtap="itemClick" class="weui-grid" data-index="1" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/tianjiawenzi.png"></image>
+                <view class="weui-grid__label">加文字消息</view>
+            </view>
+            <view catchtap="itemClick" class="weui-grid" data-index="2" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/tianjiatupian.png"></image>
+                <view class="weui-grid__label">加图片消息</view>
+            </view>
+            <view catchtap="itemClick" class="weui-grid" data-index="3" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/tianjiayuyin.png"></image>
+                <view class="weui-grid__label">加语音消息</view>
+            </view>
+            <view catchtap="itemClick" class="weui-grid" data-index="4" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/tianjiahongbao.png"></image>
+                <view class="weui-grid__label">加红包消息</view>
+            </view>
+            <view catchtap="itemClick" class="weui-grid" data-index="10" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/qunyuyin.png"></image>
+                <view class="weui-grid__label">加语音聊天</view>
+            </view>
+            <view catchtap="itemClick" class="weui-grid" data-index="11" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/zhuanfa.png"></image>
+                <view class="weui-grid__label">加转发消息</view>
+            </view>
+            <view catchtap="itemClick" class="weui-grid" data-index="8" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/time.png"></image>
+                <view class="weui-grid__label">加时间</view>
+            </view>
+            <view catchtap="itemClick" class="weui-grid" data-index="9" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/msg.png"></image>
+                <view class="weui-grid__label">系统提示</view>
+            </view>
+            <view catchtap="itemClick" class="weui-grid" data-index="5" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/jietu_daohangtiao.png"></image>
+                <view class="weui-grid__label">截图</view>
+            </view>
+            <view catchtap="itemClick" class="weui-grid" data-index="6" hoverClass="weui-grid_active">
+                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/qingkong.png"></image>
+                <view class="weui-grid__label">清空</view>
+            </view>
+        </view>
+    </view>
+</view>
+<view bindtap="close" class="drawer_screen" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+    <view class="drawer_content" style="margin-top:30rpx;height:370rpx;">
+        <view>长按屏幕添加消息</view>
+        <view class="drawer_img">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/changan.png" style="width:150rpx;height:150rpx;"></image>
+        </view>
+        <view>点击每条消息内容，修改或者删除它</view>
+        <view class="drawer_img">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/bianjitishi.png" style="width:600rpx;height:225.3rpx;"></image>
+        </view>
+        <view>制作完成之后，请用手机截屏来保存图片</view>
+    </view>
+    <view bindtap="close" style="position: absolute;right:-35rpx;top:-35rpx;">
+        <image src="https://wsgroup.hmset.com/images/wjtq/other/guanbi3.png" style="width:70rpx;height:70rpx;"></image>
+    </view>
+</view>
+<template is="zan-toast" data="{{zanToast:zanToast}}"></template>

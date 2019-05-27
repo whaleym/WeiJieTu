@@ -1,0 +1,10 @@
+.form-item-top-label {
+    color: #666;
+    font-size: 13px;
+    margin: 15px 10px 0;
+    display: block;
+}
+
+.unread-input {
+    text-align: right;
+}

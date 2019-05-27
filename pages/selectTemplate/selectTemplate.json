@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#36353a",
+    "navigationBarTextStyle": "white",
+    "usingComponents": {
+        "login-button": "/components/loginButton/loginButton"
+    }
+}

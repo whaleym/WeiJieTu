@@ -1,0 +1,47 @@
+<import src="../item/templateItem.wxml"></import>
+<import src="../item/emptyList.wxml"></import>
+<import src="/zanui/tab/index.wxml"></import>
+<import src="../../wux/dialog/dialog.wxml"></import>
+<template is="dialog" data="{{...$wux.dialog}}"></template>
+<view class="container">
+    <navigator class="flex_row_center" style="margin: 25.7rpx 0 12.7rpx 0;" url="{{url}}" wx:if="{{hasDetail}}">
+        <view class="flex_center" style="position:relative;height: 80rpx;border-radius: 10rpx;background: #383a39;width: 300rpx;">
+            <view style="color:#fff;font-size:13px;">{{text}}</view>
+            <view class="zan-arrow" style=""></view>
+            <view style="clear: both;"></view>
+        </view>
+    </navigator>
+    <!-- <navigator class="flex_row_center" style="margin: 25.7rpx 0 12.7rpx 0;" url="/pages/webview/webview?key={{key}}" wx:else>
+        <view class="flex_center" style="position:relative;height: 80rpx;border-radius: 10rpx;background: #383a39;width: 300rpx;">
+            <view style="color:#fff;font-size:13px;">使用帮助</view>
+            <view class="zan-arrow" style=""></view>
+            <view style="clear: both;"></view>
+        </view>
+    </navigator> -->
+    <view class="grid-view" style="padding-top: 13rpx;">
+        <view bindtap="selectTemplate" class="bigItem" id="0">
+            <view>
+                <image class="avatar" mode="aspectFill" src="https://wsgroup.hmset.com/images/wjtq/other/tianjian.png{{gridPicSize}}"></image>
+            </view>
+            <view class="name">从空白创建</view>
+        </view>
+        <block wx:for="{{list}}" wx:for-index="idx" wx:key="{{item.idx}}">
+            <view bindtap="selectTemplate" id="{{item.id}}">
+              <!-- wx:if="{{isLogin&&user}}" -->
+                <template is="big-item-with-icon" data="{{item:item,gridPicSize:gridPicSize}}"></template>
+            </view>
+            <!-- <login-button bind:error="selectTemplate" bind:success="selectTemplate" clearButton="{{true}}" clearType="{{true}}" id="{{item.id}}" wx:else>
+                <template is="big-item-with-icon" data="{{item:item,gridPicSize:gridPicSize}}"></template>
+            </login-button> -->
+        </block>
+    </view>
+    <view class="">
+        <view class="weui-loadmore" wx:if="{{hasMore}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+        <view class="weui-loadmore weui-loadmore_line" wx:elif="{{list.length>3}}">
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">更多模板正在路上...</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,40 @@
+<import src="/zanui/toast/index.wxml"></import>
+<view class="container page__bd">
+    <view class="weui-cells__title" style=""></view>
+    <form bindsubmit="formSubmit" id="formSubmit" reportSubmit="true">
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label">日期</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindDateChange" end="2025-09-01" mode="date" start="1945-09-01" value="{{date}}">
+                        <view wx:if="{{date}}">
+                            <view class="weui-select weui-select_in-select-after">{{date}}</view>
+                        </view>
+                        <view wx:else>
+                            <view class="weui-select weui-select_in-select-after" style="color: #999;">年月日</view>
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_select">
+                <view class="weui-cell__hd weui-cell__hd_in-select-after">
+                    <view class="weui-label">时间</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindTimeChange" mode="time" value="{{time}}">
+                        <view wx:if="{{time}}">
+                            <view class="weui-select weui-select_in-select-after">{{time}}</view>
+                        </view>
+                        <view wx:else>
+                            <view class="weui-select weui-select_in-select-after" style="color: #999;">时分</view>
+                        </view>
+                    </picker>
+                </view>
+            </view>
+        </view>
+        <button class="weui-btn" disabled="{{disabled}}" formType="submit" style="width: 80%;" type="primary">保存</button>
+    </form>
+</view>
+<template is="zan-toast" data="{{zanToast:zanToast}}"></template>

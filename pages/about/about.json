@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "login-button": "/components/loginButton/loginButton",
+        "guide": "/components/guide/guide"
+    }
+}

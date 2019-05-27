@@ -1,0 +1,6 @@
+<button class="service-page service_button" openType="contact" style="right: {{right}}rpx;bottom: {{bottom}}rpx;width: {{width}}rpx;">
+    <view class="customer-servic-circle">
+        <image class="customer-servic-img" src="{{image}}"></image>
+    </view>
+    <view class="customer-servic-title">{{content}}</view>
+</button>

@@ -1,0 +1,54 @@
+<import src="../item/newsItem.wxml"></import>
+<import src="/zanui/toast/index.wxml"></import>
+<import src="../../wux/dialog/dialog.wxml"></import>
+<template is="dialog" data="{{...$wux.dialog}}"></template>
+<view bindlongtap="popup" class="container page__bd" style="position: relative;">
+    <view catchtap="editInfo" class="header" style="position: relative;">
+        <image src="" style="width:750rpx;height:512.5rpx;background-color: #434343;" wx:if="{{!info.banner}}"></image>
+        <view style="color: #151515;font-size: 16px;position: absolute;left:275rpx;top:244.25rpx;" wx:if="{{!info.banner}}">轻触设置相册封面</view>
+        <image mode="aspectFill" src="{{info.banner}}" style="width:750rpx;height:512.5rpx;" wx:if="{{info.banner}}"></image>
+        <view style="position: absolute;font-size:16px;right: 200rpx;bottom: 28rpx;color: #fff;font-weight: 700;">{{info.name?info.name:'昵称'}}</view>
+        <image src="{{info.avatar?info.avatar:'https://wsgroup.hmset.com/images/wjtq/other/default_avatar.png'}}" style="position: absolute;width: 130.21rpx;height: 130.21rpx;border: 1px solid #cecece;right: 18.75rpx;bottom: -36.87rpx;margin:5px;background-color: #fff;"></image>
+    </view>
+    <view catchtap="editInfo" style="padding: 131.9rpx 0 0 0;" wx:if="{{info.news}}">
+        <view class="flex_row_center">
+            <view class="flex_center" style="position:relative;border-radius: 10rpx;background: #383a39;width: 360.4rpx;height:79.9rpx;">
+                <image mode="aspectFill" src="{{info.newsAvatar?info.newsAvatar:'https://wsgroup.hmset.com/images/wjtq/other/xiaoxi.png'}}" style="position:absolute;left:10rpx;top:10rpx;width: 60rpx;height: 60rpx;display: block;"></image>
+                <view style="color:#fff;font-size:13px;">{{info.news}}条新消息</view>
+                <view class="zan-arrow" style="border-color:#282a29;"></view>
+                <view style="clear: both;"></view>
+            </view>
+        </view>
+    </view>
+    <view catchtap="editInfo" style="height: 24rpx;border-bottom:1rpx solid #e5e5e5;" wx:if="{{info.news}}"></view>
+    <view catchtap="editInfo" style="height: 36rpx;" wx:else></view>
+    <view wx:if="{{!empty}}">
+        <template is="news_item" data="{{mode:'circle',isAndroid:isAndroid,name:info.name,padding:padding,style:'border-top:1rpx solid #e5e5e5;margin-top:24rpx;padding-top:24rpx;',index:index,item:detail,oneSize:oneSize,twoSize:twoSize,pixelRatio:pixelRatio,threeSize:threeSize}}" wx:if="{{detail&&index!=99&&detail.content}}" wx:for="{{details}}" wx:for-item="detail" wx:key="*this"></template>
+    </view>
+    <view class="flex_center" style="margin-top:180rpx;height: 270rpx;" wx:else>
+        <view class="weui-msg__icon-area" style="">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/nocontent_list.png" style="width: 588rpx;height:269rpx;"></image>
+        </view>
+    </view>
+    <navigator style="position:fixed;right:0;bottom:0;width:100px;height:100px;" url="/pages/about/about?type=vip" wx:if="{{!isVip&&platform!='ios'}}">
+        <image src="/styles/watermark.png" style="width:100%;height:100%;"></image>
+    </navigator>
+</view>
+<view bindtap="close" class="drawer_screen" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+    <view class="drawer_content">
+        <view>长按屏幕添加朋友圈内容</view>
+        <view class="drawer_img">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/changan.png" style="width:150rpx;height:150rpx;"></image>
+        </view>
+        <view>点页面任何部分，修改该部分内容</view>
+        <view class="drawer_img">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/dianjitishi_1.jpg" style="width:500rpx;height:244rpx;"></image>
+        </view>
+        <view>制作完成后，请用手机截屏来保存图片</view>
+    </view>
+    <view bindtap="close" style="position: absolute;right:-35rpx;top:-35rpx;">
+        <image src="https://wsgroup.hmset.com/images/wjtq/other/guanbi3.png" style="width:70rpx;height:70rpx;"></image>
+    </view>
+</view>
+<template is="zan-toast" data="{{zanToast:zanToast}}"></template>

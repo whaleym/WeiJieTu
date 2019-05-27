@@ -1,0 +1,75 @@
+{
+	"version": "1.0.3",
+	"lockedCount": 5,
+	"lists": [
+	{
+		"title": "支付宝截图",
+		"list": [{
+			"background": "#8FA0FB",
+			"url": "/pages/zhuangx/edit/edit?scene=5a0060a17727bcc67a8b45ed",
+			"type": "link",
+			"pic": "https://wsgroup.hmset.com/images/wjtq/other/zhifubaoyue_icon.png",
+			"name": "支付宝余额",
+			"unlockCount": 6
+		},
+		{
+			"background": "#8FA0FB",
+			"url": "/pages/zhuangx/edit/edit?scene=5a0060a17727bcc67a8b45ee",
+			"type": "link",
+			"pic": "https://wsgroup.hmset.com/images/wjtq/other/zhifubaohuabei_icon.png",
+			"name": "支付宝花呗",
+			"unlockCount": 6
+		},
+		{
+			"background": "#8FA0FB",
+			"url": "/pages/zhuangx/edit/edit?scene=5a23934d7727bc81668b4598",
+			"type": "link",
+			"pic": "https://wsgroup.hmset.com/images/wjtq/other/zhifubaozhuanzhang_icon.png",
+			"name": "支付宝转账",
+			"unlockCount": 6
+		},
+		{
+			"background": "#8FA0FB",
+			"url": "/pages/zhuangx/edit/edit?scene=5a22b10a7727bcfe208b45d3",
+			"type": "link",
+			"pic": "https://wsgroup.hmset.com/images/wjtq/other/zhifubaohongbao_icon.png",
+			"name": "支付宝红包",
+			"unlockCount": 6
+		},
+		{
+			"background": "#8FA0FB",
+			"url": "/pages/zhuangx/edit/edit?scene=5a0060a27727bcc67a8b4624",
+			"type": "link",
+			"pic": "https://wsgroup.hmset.com/images/wjtq/other/zhifubaozongzichan_icon.png",
+			"name": "支付宝总资产",
+			"unlockCount": 6
+		},
+		{
+			"background": "#8FA0FB",
+			"url": "/pages/zhuangx/edit/edit?scene=5a22ba347727bca41d8b45ff",
+			"type": "link",
+			"pic": "https://wsgroup.hmset.com/images/wjtq/other/zhifubaoqianbao_icon.png",
+			"name": "支付宝提现",
+			"unlockCount": 6
+		}]
+	},
+	{
+		"title": "其它截图",
+		"list": [{
+			"background": "#F99BBC",
+			"url": "/pages/zhuangx/edit/edit?scene=5a0060a17727bcc67a8b45f9",
+			"type": "link",
+			"pic": "https://wsgroup.hmset.com/images/wjtq/other/laidianxianshi_icon.png",
+			"name": "来电显示",
+			"unlockCount": 7
+		},
+		{
+			"background": "#F99BBC",
+			"url": "/pages/zhuangx/edit/edit?scene=5a73133b7727bca2048b4fe8",
+			"type": "link",
+			"pic": "https://wsgroup.hmset.com/images/wjtq/other/weibofensishu_icon.png",
+			"name": "微博粉丝数",
+			"unlockCount": 7
+		}]
+	}]
+}

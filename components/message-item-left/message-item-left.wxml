@@ -1,0 +1,22 @@
+<view catchtap="tapMessage" class="message-item b_flex end_flex" data-index="{{index}}">
+    <view class="message-user-avatar avatar-left">
+        <image lazyload="true" mode="aspectFill" src="{{avatar}}"></image>
+        <view class="avatar-shade"></view>
+    </view>
+    <view class="flex_all">
+        <view class="dialog_name" wx:if="{{showName}}">{{name}}</view>
+        <view class="chat-container chat-container__left">
+            <view class="a_flex">
+                <view class="a_flex content-container" style="background: {{backgroundColor}}">
+                    <slot name="content"></slot>
+                    <view class="shade-view {{isAndroid?'shade-android':''}}" wx:if="{{border}}"></view>
+                </view>
+                <slot name="right"></slot>
+            </view>
+            <block wx:if="{{showArrow}}">
+                <view class="chat-arrow__left" style="border-right-color: {{arrowColor||backgroundColor}}"></view>
+                <view class="chat-arrow-border chat-arrow-border__left {{isAndroid?'arrow-border-android':''}}"></view>
+            </block>
+        </view>
+    </view>
+</view>

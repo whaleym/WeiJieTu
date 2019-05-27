@@ -1,0 +1,49 @@
+<view class="selfInfo">
+    <image class="bg" src="/assets/imgs/qietu_06.jpg"></image>
+    <view class="main">
+        <open-data class="head" type="userAvatarUrl"></open-data>
+        <open-data class="nickName" type="userNickName"></open-data>
+        <image class="vipIcon" src="/assets/imgs/qietu_03.png" />
+        <text class="vipDesc">超级会员Lv6</text>
+    </view>
+</view>
+<navigator target="miniProgram" open-type="navigate" app-id="wx6c29f2e1437e3eb4" class="getVip">
+    <image class="getVipBg" src="/assets/imgs/qietu_08.jpg" />
+    <image class="getVipBtn" src="/assets/imgs/qietu_11.png" />
+</navigator>
+<view class="listTitleBg">
+    <text class="listTitle">我的功能</text>
+</view>
+<view class="applist">
+    <navigator wx:for="{{lists}}" wx:key="index" target="miniProgram" open-type="navigate" app-id="{{item.appid}}" class="applistItem">
+        <image class="applistItemImg" src="https://wsgroup.hmset.com/images/wjtq/share/{{item.img}}" />
+    </navigator>
+</view>
+<view class="bottomBg">
+    <image class="bottomImg" src="/assets/imgs/qietu_31.jpg" />
+</view>
+<!--
+<scroll-view scrollY class="list">
+    <view class="line">
+        <image src="/assets/imgs/page4.png"></image>
+        <button plain bindtap="recordClick" data-index="3" openType="share">分享素材小程序</button>
+        <image src="/assets/imgs/arrow.png"></image>
+    </view>
+    <view bindtap="goWeb" class="line" data-web="questions">
+        <image src="/assets/imgs/page8_0.png"></image>
+        <button plain bindtap="recordClick" data-index="6">常见问题</button>
+        <image src="/assets/imgs/arrow.png"></image>
+    </view>
+    <view class="tencentAd">
+        <ad unitId="adunit-d7b7878f3a886a89">广告位招商</ad>
+    </view>
+</scroll-view>
+<view bindtap="closeCourse" class="goCourse" style="{{goCourseStyle}}">
+    <view>
+        <view class="title">提示</view>
+        <text class="content">点击“进入课程”，回复数
+字“2”即可获取课程</text>
+        <button plain bindtap="recordClick" data-index="" hoverClass="none" openType="contact">进入课程</button>
+    </view>
+</view>
+-->

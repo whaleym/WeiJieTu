@@ -1,0 +1,72 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/zhuangx/edit/edit",
+        "pages/zhuangx/cutInside/cutInside",
+        "pages/webview/webview",
+        "pages/redirect/redirect",
+        "pages/about/about",
+        "pages/preview/preview",
+        "pages/profile/index/index",
+        "pages/profile/cutInside/cutInside",
+        "pages/screenShot/screenShot",
+        "pages/selectTemplate/selectTemplate",
+        "pages/selectUser/selectUser",
+        "pages/circle/circle",
+        "pages/info/info",
+        "pages/detail/detail",
+        "pages/detailADAdd/detailADAdd",
+        "pages/detailLinkAdd/detailLinkAdd",
+        "pages/detailAdd/detailAdd",
+        "pages/commentAdd/commentAdd",
+        "pages/likeAdd/likeAdd",
+        "pages/likesAdd/likesAdd",
+        "pages/detailExtra/detailExtra",
+        "pages/commentTime/commentTime",
+        "pages/jietu/weixin/qunliao/qunliao",
+        "pages/jietu/weixin/danliao/danliao",
+        "pages/jietu/weixin/qunliaoshezhi/qunliaoshezhi",
+        "pages/jietu/weixin/danliaoshezhi/danliaoshezhi",
+        "pages/jietu/textAdd/textAdd",
+        "pages/jietu/timeAdd/timeAdd",
+        "pages/jietu/videoAdd/videoAdd",
+        "pages/jietu/urlAdd/urlAdd",
+        "pages/jietu/messageAdd/messageAdd",
+        "pages/jietu/picAdd/picAdd",
+        "pages/jietu/voiceAdd/voiceAdd",
+        "pages/jietu/hongbaoAdd/hongbaoAdd",
+        "pages/jietu/zhuanzhangAdd/zhuanzhangAdd",
+        "pages/cutInside/cutInside",
+        "pages/center/center"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "微商截图制作小工具",
+        "navigationBarTextStyle": "black"
+    },
+    "networkTimeout": {
+        "request": 20000
+    },
+    "tabBar": {
+        "color": "#bfc2c7",
+        "selectedColor": "#313131",
+        "backgroundColor": "#f8f8f8",
+        "borderStyle": "white",
+        "list": [{
+            "pagePath": "pages/index/index",
+            "text": "首页",
+            "iconPath": "styles/home.png",
+            "selectedIconPath": "styles/home_check.png"
+        }, {
+            "pagePath": "pages/center/center",
+            "text": "我的",
+            "iconPath": "styles/mine.png",
+            "selectedIconPath": "styles/mine_check.png"
+        }]
+    },
+    "navigateToMiniProgramAppIdList": [
+        "wx553772dda0197ac9",
+        "wx6c29f2e1437e3eb4"
+    ]
+}

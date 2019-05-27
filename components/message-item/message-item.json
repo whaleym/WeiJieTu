@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "message-item-left": "/components/message-item-left/message-item-left",
+        "message-item-right": "/components/message-item-right/message-item-right"
+    }
+}

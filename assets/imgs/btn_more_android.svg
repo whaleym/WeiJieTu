@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="3px" viewBox="0 0 17 3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>android-more</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="android-more" fill="#FFFFFF">
+            <g id="Page-1">
+                <g id="android-more">
+                    <g id="Page-1">
+                        <g id="dian" transform="translate(8.500000, 1.500000) rotate(270.000000) translate(-8.500000, -1.500000) translate(7.000000, -7.000000)">
+                            <path d="M3,1.5 C3,2.32843 2.328428,3 1.5,3 C0.6715728,3 4.4408921e-16,2.32843 4.4408921e-16,1.5 C4.4408921e-16,0.67157 0.6715728,0 1.5,0 C2.328428,0 3,0.67157 3,1.5 Z" id="Fill-1"></path>
+                            <path d="M3,8.5 C3,9.328428 2.328428,10 1.5,10 C0.6715728,10 4.4408921e-16,9.328428 4.4408921e-16,8.5 C4.4408921e-16,7.671572 0.6715728,7 1.5,7 C2.328428,7 3,7.671572 3,8.5 Z" id="Fill-3"></path>
+                            <path d="M3,15.5 C3,16.3284272 2.328428,17 1.5,17 C0.6715728,17 -1.19904087e-14,16.3284272 -1.19904087e-14,15.5 C-1.19904087e-14,14.671572 0.6715728,14 1.5,14 C2.328428,14 3,14.671572 3,15.5 Z" id="Fill-5"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

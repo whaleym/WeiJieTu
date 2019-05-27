@@ -1,0 +1,419 @@
+<template name="message_item">
+    <view catchtap="operateMessage" class="c_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:if="{{item.time}}">
+        <view class="flex_col_center {{bg?'time-black':'time-white'}}" style="border-radius: 9rpx;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;height:48rpx;font-size:12px;padding:0 23.99rpx;">
+            <text>{{item.time}}</text>
+        </view>
+    </view>
+    <view catchtap="operateMessage" class="c_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:if="{{item.message}}">
+        <view class="flex_col_center" style="border-radius: 9rpx;color: #fff;background-color:#cecece;font-size:14px;line-height:17px;padding:6rpx 23.99rpx;max-width: 80%;">
+            <view>{{item.message}}
+        <text style="color: #2d75e6;" wx:if="{{item.typeIndex==5}}">发送朋友验证</text>
+            </view>
+        </view>
+    </view>
+    <block wx:if="{{name!=item.name&&item.name}}">
+        <view catchtap="operateMessage" class="b_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:if="{{item.content}}">
+            <view class="message-user-avatar avatar-left">
+                <image lazyload="true" mode="aspectFill" src="{{item.avatar}}"></image>
+                <view class="avatar-shade"></view>
+            </view>
+            <view class="flex_all">
+                <view class="dialog_name" wx:if="{{show_name}}">{{item.name}}</view>
+                <view style="position: relative;">
+                    <view class="weixin_triangle" style="float:left;margin-top: 28.685rpx;border-color: transparent #fff transparent transparent;"></view>
+                    <view class="a_flex" style="background-color: #fff;float:left;border-radius: 9rpx;">
+                        <view style="margin: 17rpx 19.82rpx 17rpx 23.99rpx;font-size: 16px;max-width: 495.48rpx;word-wrap:break-word ;line-height: 20px;" wx:if="{{!item.content.WxEmojiTextArray}}">{{item.content}}</view>
+                        <view style="margin: 17rpx 19.82rpx 17rpx 23.99rpx;font-size: 16px;max-width: 495.48rpx;word-wrap:break-word ;line-height: 20px;" wx:else>
+                            <block wx:for="{{item.content.WxEmojiTextArray}}" wx:key="{{index}}">
+                                <text wx:if="{{item.node=='text'}}">{{item.text}}</text>
+                                <image class="wxEmoji" src="/WxEmojiView/emojis/{{item.text}}" wx:elif="{{item.node=='element'}}"></image>
+                            </block>
+                        </view>
+                    </view>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+        </view>
+        <view catchtap="operateMessage" class="b_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:elif="{{item.pic}}">
+            <view class="message-user-avatar avatar-left">
+                <image lazyload="true" mode="aspectFill" src="{{item.avatar}}"></image>
+            </view>
+            <view class="flex_all left-pic-container">
+                <view class="dialog_name" wx:if="{{show_name}}">{{item.name}}</view>
+                <view class="{{app}}_dialog" style="float:left;height: {{system.windowWidth*max_width*item.pic.height/item.pic.width}}px;width:{{system.windowWidth*max_width}}px;" wx:if="{{item.pic.width>=item.pic.height&&item.pic.width>=system.windowWidth*max_width}}">
+                    <image lazyload="true" src="{{item.pic.url}}" style="height: {{system.windowWidth*max_width*item.pic.height/item.pic.width}}px;width:{{system.windowWidth*max_width}}px"></image>
+                    <view class="pic-shade"></view>
+                </view>
+                <view class="{{app}}_dialog" style="float:left;width: {{system.windowWidth*max_height*item.pic.width/item.pic.height}}px;height:{{system.windowWidth*max_height}}px;" wx:elif="{{item.pic.height>item.pic.width&&item.pic.height>=system.windowWidth*max_height}}">
+                    <image lazyload="true" src="{{item.pic.url}}" style="width: {{system.windowWidth*max_height*item.pic.width/item.pic.height}}px;height:{{system.windowWidth*max_height}}px"></image>
+                    <view class="pic-shade"></view>
+                </view>
+                <view class="{{app}}_dialog" style="float:left;height: {{item.pic.height}}px;width:{{item.pic.width}}px;" wx:elif="{{item.pic.height>item.pic.width}}">
+                    <image lazyload="true" src="{{item.pic.url}}" style="height: {{item.pic.height}}px;width:{{item.pic.width}}px"></image>
+                    <view class="pic-shade"></view>
+                </view>
+                <view class="{{app}}_dialog" style="float:left;height: {{item.pic.height}}px;width:{{item.pic.width}}px;" wx:else>
+                    <image lazyload="true" src="{{item.pic.url}}" style="height: {{item.pic.height}}px;width:{{item.pic.width}}px"></image>
+                    <view class="pic-shade"></view>
+                </view>
+            </view>
+        </view>
+        <view catchtap="operateMessage" class="b_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:elif="{{item.voice_length}}">
+            <view class="message-user-avatar avatar-left">
+                <image lazyload="true" mode="aspectFill" src="{{item.avatar}}"></image>
+                <view class="avatar-shade"></view>
+            </view>
+            <view class="flex_all">
+                <view class="dialog_name" wx:if="{{show_name}}">{{item.name}}</view>
+                <view style="position: relative;">
+                    <view class="weixin_triangle" style="float:left;margin-top: 28.685rpx;border-color:transparent #fff transparent transparent;"></view>
+                    <view style="width:117.87rpx;height: 78.23rpx;background-color: #fff;border-radius: 9rpx;float:left;" wx:if="{{item.voice_length<3}}">
+                        <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin1.png" style="width:34.42rpx;height:34.42rpx;margin:21.9rpx 0 0 15.65rpx;"></image>
+                    </view>
+                    <view style="width:{{117.87+(item.voice_length-2)*10.43}}rpx;height: 78.23rpx;border-radius: 9rpx;background-color: #fff;float:left;" wx:elif="{{item.voice_length<4}}">
+                        <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin1.png" style="width:34.42rpx;height:34.42rpx;margin:21.9rpx 0 0 15.65rpx;"></image>
+                    </view>
+                    <view style="width:{{128.3+(item.voice_length-3)*19.82}}rpx;height: 78.23rpx;border-radius: 9rpx;background-color: #fff;float:left;" wx:elif="{{item.voice_length<7}}">
+                        <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin1.png" style="width:34.42rpx;height:34.42rpx;margin:21.9rpx 0 0 15.65rpx;"></image>
+                    </view>
+                    <view style="width:{{187.76+(item.voice_length-6)*15.65}}rpx;height: 78.23rpx;border-radius: 9rpx;background-color: #fff;float:left;" wx:elif="{{item.voice_length<11}}">
+                        <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin1.png" style="width:34.42rpx;height:34.42rpx;margin:21.9rpx 0 0 15.65rpx;"></image>
+                    </view>
+                    <view style="width:{{261.82+(item.voice_length-10)*2.09}}rpx;height: 78.23rpx;background-color: #fff;border-radius: 9rpx;float:left;" wx:else>
+                        <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin1.png" style="width:34.42rpx;height:34.42rpx;margin:21.9rpx 0 0 15.65rpx;"></image>
+                    </view>
+                    <view style="font-size:10pt;color:#969696;float: left;margin-top: 26.12rpx;margin-left: 14.6rpx;">{{item.voice_length}}''</view>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+        </view>
+        <view catchtap="operateMessage" class="b_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:elif="{{item.zhuanzhang_price||item.shouqian_price}}">
+            <view class="message-user-avatar avatar-left">
+                <image lazyload="true" mode="aspectFill" src="{{item.avatar}}"></image>
+                <view class="avatar-shade"></view>
+            </view>
+            <view class="flex_all">
+                <view class="dialog_name" wx:if="{{show_name}}">{{item.name}}</view>
+                <view style="position: relative;">
+                    <view class="weixin_triangle" style="float:left;margin-top: 28.685rpx;border-color: transparent {{item.shouqian_price||item.yishou?'#ffd09c':'#fa9e3b'}} transparent transparent;"></view>
+                    <view style="width:460rpx;float:left;">
+                        <view style="font-size: 16px;height:129.35rpx;word-wrap:break-word ;color: #fff;background-color:{{item.shouqian_price||item.yishou?'#ffd09c':'#fa9e3b'}} ;border-radius: 9rpx 9rpx 0 0;">
+                            <view style="float:left;padding: 24rpx 19.82rpx 24rpx 19.82rpx;width:81.36rpx;height: 81.36rpx;">
+                                <image src="https://wsgroup.hmset.com/images/wjtq/other/yilingqu.png" style="width:81.36rpx;height: 81.36rpx;" wx:if="{{item.shouqian_price||item.yishou}}"></image>
+                                <image src="https://wsgroup.hmset.com/images/wjtq/other/zhuanzhang.png" style="width:81.36rpx;height: 81.36rpx;" wx:else></image>
+                            </view>
+                            <view style="float:left;padding-top: 8px;width:335rpx;" wx:if="{{isAndroid}}">
+                                <view style="font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                                    <text wx:if="{{item.shouqian_price}}">已收钱</text>
+                                    <text wx:elif="{{item.zhuanzhang_price&&!item.yishou}}">{{item.zhuanzhang_shuoming}}</text>
+                                    <text wx:else>已被领取
+                    <text hidden="{{!item.zhuanzhang_shuoming}}">-</text>{{item.zhuanzhang_shuoming}}</text>
+                                </view>
+                                <view style="font-size:12px;">
+                                    <text>¥</text>
+                                    <text style="margin-left: 6rpx;">{{item.zhuanzhang_price?item.zhuanzhang_price:item.shouqian_price}}</text>
+                                </view>
+                            </view>
+                            <view style="float:left;padding-top: 5px;width:335rpx;" wx:else>
+                                <view style="font-size:19px;">
+                                    <text>¥</text>
+                                    <text style="margin-left: 6rpx;">{{item.zhuanzhang_price?item.zhuanzhang_price:item.shouqian_price}}</text>
+                                </view>
+                                <view style="font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                                    <text wx:if="{{item.shouqian_price}}">已收钱</text>
+                                    <text wx:elif="{{item.zhuanzhang_price&&!item.yishou}}">{{item.zhuanzhang_shuoming}}</text>
+                                    <text wx:else>已被领取
+                    <text hidden="{{!item.zhuanzhang_shuoming}}">-</text>{{item.zhuanzhang_shuoming}}</text>
+                                </view>
+                            </view>
+                            <view style="clear: both;"></view>
+                        </view>
+                        <view class="flex_col_center" style="font-size:10px;height: 16px;line-height:16px;color: #9c9c9c;padding-left: 10px;background-color: #fff;border-radius:0 0 4.5px 4.5px;">
+                            <view>微信转账</view>
+                        </view>
+                    </view>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+        </view>
+        <view catchtap="operateMessage" class="b_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:elif="{{item.hongbao_price&&item.typeIndex==0}}">
+            <view class="message-user-avatar avatar-left">
+                <image lazyload="true" mode="aspectFill" src="{{item.avatar}}"></image>
+                <view class="avatar-shade"></view>
+            </view>
+            <view class="flex_all">
+                <view class="dialog_name" wx:if="{{show_name}}">{{item.name}}</view>
+                <view style="position: relative;">
+                    <view class="weixin_triangle" style="float:left;margin-top: 28.685rpx;border-color: transparent {{item.typeIndex==0&&!item.yilingwan?'#fa9e3b':'#ffd09c'}} transparent transparent;"></view>
+                    <view style="width:460rpx;float:left;">
+                        <view style="font-size: 16px;height:129.35rpx;word-wrap:break-word ;color: #fff;background-color:{{item.typeIndex==0&&!item.yilingwan?'#fa9e3b':'#ffd09c'}} ;border-radius: 9rpx 9rpx 0 0;">
+                            <view style="float:left;padding: 24rpx 19.82rpx 24rpx 19.82rpx;width:81.36rpx;height: 81.36rpx;">
+                                <image src="https://wsgroup.hmset.com/images/wjtq/other/fahongbao.png" style="width:67.8rpx;height: 81.32rpx;" wx:if="{{item.typeIndex==0&&!item.yilingwan}}"></image>
+                                <image src="https://wsgroup.hmset.com/images/wjtq/other/chaihongbao.png" style="width:67.8rpx;height: 81.32rpx;" wx:else></image>
+                            </view>
+                            <view style="float:left;padding-top: 12rpx;width:335rpx;">
+                                <view style="font-size:16px;margin-top:7rpx;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                                    <text wx:if="{{item.typeIndex==1}}">{{item.hongbao_shuoming}}</text>
+                                    <text wx:elif="{{item.typeIndex==0&&item.yilingwan}}">{{item.hongbao_shuoming}}</text>
+                                    <text wx:else>{{item.hongbao_shuoming}}</text>
+                                </view>
+                                <view style="font-size:12px;">
+                                    <view wx:if="{{item.typeIndex==1}}">红包已领取</view>
+                                    <view wx:elif="{{item.typeIndex==0&&item.yilingwan}}">红包已领取</view>
+                                    <view wx:else>领取红包</view>
+                                </view>
+                            </view>
+                            <view style="clear: both;"></view>
+                        </view>
+                        <view class="flex_col_center" style="font-size:12px;height: 39.64rpx;color: #9c9c9c;padding-left: 20.86rpx;background-color: #fff;border-radius:0 0 9rpx 9rpx;">
+                            <view>微信红包</view>
+                        </view>
+                    </view>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+        </view>
+        <view catchtap="operateMessage" class="c_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:elif="{{item.hongbao_price&&item.typeIndex==1}}">
+            <view class="flex_col_center" style="border-radius: 9rpx;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color: #fff;height:48rpx;background-color:#cecece;font-size:12px;padding:0 23.99rpx;" wx:if="{{item.fromIndex==0}}">
+                <image src="https://wsgroup.hmset.com/images/wjtq/other/fahongbao.png" style="width:29.2rpx;height: 35.46rpx;padding-right:19.82rpx;"></image>
+                <text>你</text>领取了
+        <text>{{item.name}}</text>的
+        <text style="color: #fd9931;">红包</text>
+            </view>
+            <view class="flex_col_center" style="border-radius: 9rpx;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color: #fff;height:48rpx;background-color:#cecece;font-size:12px;padding:0 23.99rpx;" wx:else>
+                <image src="https://wsgroup.hmset.com/images/wjtq/other/fahongbao.png" style="width:29.2rpx;height: 35.46rpx;padding-right:19.82rpx;"></image>
+                <text>{{item.name}}</text>领取了
+        <text>你</text>的
+        <text style="color: #fd9931;">红包</text>
+            </view>
+        </view>
+        <view catchtap="operateMessage" class="b_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:elif="{{item.is_video}}">
+            <view class="message-user-avatar avatar-left">
+                <image lazyload="true" mode="aspectFill" src="{{item.avatar}}"></image>
+                <view class="avatar-shade"></view>
+            </view>
+            <view class="flex_all">
+                <view class="dialog_name" wx:if="{{show_name}}">{{item.name}}</view>
+                <view style="position: relative;">
+                    <view class="weixin_triangle" style="float:left;margin-top: 28.685rpx;border-color: transparent #fff transparent transparent;"></view>
+                    <view class="a_flex" style="background-color: #fff;float:left;border-radius: 9rpx;padding: 0 20.86rpx;height: 78.23rpx;">
+                        <image src="https://wsgroup.hmset.com/images/wjtq/other/shipinliao.png" style="width:43.81rpx;height: 20.86rpx;" wx:if="{{item.typeIndex==0}}"></image>
+                        <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyinliao.png" style="width:43.81rpx;height: 18.78rpx;" wx:else></image>
+                        <view style="padding-left:25.03rpx;font-size: 16px;" wx:if="{{item.statusIndex==0}}">通话时长</view>
+                        <view style="padding-left:25.03rpx;font-size: 16px;" wx:if="{{item.statusIndex==1}}">已取消</view>
+                        <view style="padding-left:25.03rpx;font-size: 16px;" wx:if="{{item.statusIndex==2}}">已拒绝</view>
+                        <view style="padding-left:25.03rpx;font-size: 16px;" wx:if="{{item.statusIndex==3}}">对方已取消</view>
+                        <view style="padding-left:25.03rpx;font-size: 16px;" wx:if="{{item.statusIndex==4}}">对方已拒绝</view>
+                        <view style="padding-left:12.52rpx;font-size: 16px;" wx:if="{{item.statusIndex==0}}">{{item.videoLength}}</view>
+                    </view>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+        </view>
+        <view catchtap="operateMessage" class="b_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:elif="{{item.linkTitle}}">
+            <view class="message-user-avatar avatar-left">
+                <image lazyload="true" mode="aspectFill" src="{{item.avatar}}"></image>
+                <view class="avatar-shade"></view>
+            </view>
+            <view class="flex_all">
+                <view class="dialog_name" wx:if="{{show_name}}">{{item.name}}</view>
+                <view style="position: relative;">
+                    <view class="weixin_triangle" style="float:left;margin-top: 28.685rpx;border-color: transparent #fff transparent transparent;"></view>
+                    <view style="width:460rpx;float:left;">
+                        <view style="font-size: 16px;background-color:#fff ;border-radius: 9rpx;padding:25.03rpx 18.78rpx 22.95rpx 21.9rpx">
+                            <view style="color:#000;line-height:20px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;">{{item.linkTitle}}</view>
+                            <view class="flex_row" style="margin-top: 13.56rpx;">
+                                <view class="flex_all" style="overflow:hidden;font-size:12px;line-height:16px;color:#8f8f8f;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;">{{item.linkContent}}</view>
+                                <view style="width: 89.71rpx;">
+                                    <image mode="aspectFill" src="{{item.linkAvatar?item.linkAvatar:'https://wsgroup.hmset.com/images/wjtq/other/link.png'}}" style="width: 89.71rpx;height: 89.71rpx;display: block;float: right;"></image>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:elif="{{item.name}}">
+        <messge-item-right avatar="{{item.avatar}}" backgroundColor="#A0E75A" data-index="{{index}}" isFail="{{item.isFail}}" wx:if="{{item.content}}">
+            <view slot="content">
+                <view style="margin: 17rpx 20rpx 17rpx 24rpx;font-size: 16px;max-width: 496rpx;word-wrap:break-word ;line-height: 20px;" wx:if="{{!item.content.WxEmojiTextArray}}">{{item.content}}</view>
+                <view style="margin: 17rpx 20rpx 17rpx 24rpx;font-size: 16px;max-width: 496rpx;word-wrap:break-word ;line-height: 20px;vertical-align: middle;display: table" wx:else>
+                    <block wx:for="{{item.content.WxEmojiTextArray}}" wx:key="{{index}}">
+                        <text wx:if="{{item.node=='text'}}">{{item.text}}</text>
+                        <image class="wxEmoji" src="/WxEmojiView/emojis/{{item.text}}" wx:elif="{{item.node=='element'}}"></image>
+                    </block>
+                </view>
+            </view>
+        </messge-item-right>
+        <messge-item-right avatar="{{item.avatar}}" data-index="{{index}}" isFail="{{item.isFail}}" showArrow="{{false}}" wx:if="{{item.pic}}">
+            <view slot="content">
+                <view class="my_{{app}}_dialog" style="float:left;height: {{system.windowWidth*max_width*item.pic.height/item.pic.width}}px;width:{{system.windowWidth*max_width}}px;" wx:if="{{item.pic.width>=item.pic.height&&item.pic.width>=system.windowWidth*max_width}}">
+                    <image lazyload="true" src="{{item.pic.url}}" style="height: {{system.windowWidth*max_width*item.pic.height/item.pic.width}}px;width:{{system.windowWidth*max_width}}px"></image>
+                    <view class="pic-shade"></view>
+                </view>
+                <view class="my_{{app}}_dialog" style="float:left;width: {{system.windowWidth*max_height*item.pic.width/item.pic.height}}px;height:{{system.windowWidth*max_height}}px;" wx:elif="{{item.pic.height>item.pic.width&&item.pic.height>=system.windowWidth*max_height}}">
+                    <image lazyload="true" src="{{item.pic.url}}" style="width: {{system.windowWidth*max_height*item.pic.width/item.pic.height}}px;height:{{system.windowWidth*max_height}}px"></image>
+                    <view class="pic-shade"></view>
+                </view>
+                <view class="my_{{app}}_dialog" style="float:left;height: {{item.pic.height}}px;width:{{item.pic.width}}px;" wx:elif="{{item.pic.height>item.pic.width}}">
+                    <image lazyload="true" src="{{item.pic.url}}" style="height: {{item.pic.height}}px;width:{{item.pic.width}}px"></image>
+                    <view class="pic-shade"></view>
+                </view>
+                <view class="my_{{app}}_dialog" style="float:left;height: {{item.pic.height}}px;width:{{item.pic.width}}px;" wx:else>
+                    <image lazyload="true" src="{{item.pic.url}}" style="height: {{item.pic.height}}px;width:{{item.pic.width}}px"></image>
+                    <view class="pic-shade"></view>
+                </view>
+            </view>
+        </messge-item-right>
+        <messge-item-right avatar="{{item.avatar}}" backgroundColor="#A0E75A" data-index="{{index}}" isFail="{{item.isFail}}" wx:if="{{item.voice_length}}">
+            <view slot="left" style="font-size:10pt;color:#969696;float: left;margin-top: 26.12rpx;margin-right: 14.6rpx;" wx:if="{{!item.isFail}}">{{item.voice_length}}''</view>
+            <view slot="content">
+                <view style="width:117.87rpx;height: 78.23rpx;background-color: #a2e65b;border-radius: 9rpx;float:left;text-align:right;" wx:if="{{item.voice_length<3}}">
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin2.png" style="width:34.42rpx;height:34.42rpx;margin:21.9rpx 15.65rpx 0 0;"></image>
+                </view>
+                <view style="width:{{117.87+(item.voice_length-2)*10.43}}rpx;height: 78.23rpx;border-radius: 9rpx;background-color: #a2e65b;float:left;text-align:right;" wx:elif="{{item.voice_length<4}}">
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin2.png" style="width:34.42rpx;height:34.42rpx;margin:21.9rpx 15.65rpx 0 0;"></image>
+                </view>
+                <view style="width:{{128.3+(item.voice_length-3)*19.82}}rpx;height: 78.23rpx;border-radius: 9rpx;background-color: #a2e65b;float:left;text-align:right;" wx:elif="{{item.voice_length<7}}">
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin2.png" style="width:34.42rpx;height:34.42rpx;margin:21.9rpx 15.65rpx 0 0;"></image>
+                </view>
+                <view style="width:{{187.76+(item.voice_length-6)*15.65}}rpx;height: 78.23rpx;border-radius: 9rpx;background-color: #a2e65b;float:left;text-align:right;" wx:elif="{{item.voice_length<11}}">
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin2.png" style="width:34.42rpx;height:34.42rpx;margin:21.9rpx 15.65rpx 0 0;"></image>
+                </view>
+                <view style="width:{{261.82+(item.voice_length-10)*2.09}}rpx;height: 78.23rpx;background-color: #a2e65b;border-radius: 9rpx;float:left;text-align:right;" wx:else>
+                    <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyin2.png" style="width:34.42rpx;height:34.42rpx;margin:21.9rpx 15.65rpx 0 0;"></image>
+                </view>
+            </view>
+        </messge-item-right>
+        <messge-item-right avatar="{{item.avatar}}" backgroundColor="{{item.shouqian_price||item.yishou?'#ffd09c':'#fa9e3b'}}" data-index="{{index}}" wx:if="{{item.zhuanzhang_price||item.shouqian_price}}">
+            <view slot="content">
+                <view style="width:460rpx;float:left;">
+                    <view style="font-size: 16px;height:129.35rpx;word-wrap:break-word ;color: #fff;background-color:{{item.shouqian_price||item.yishou?'#ffd09c':'#fa9e3b'}} ;border-radius: 9rpx 9rpx 0 0;">
+                        <view style="float:left;padding: 24rpx 19.82rpx 24rpx 19.82rpx;width:81.36rpx;height: 81.36rpx;">
+                            <image src="https://wsgroup.hmset.com/images/wjtq/other/yilingqu.png" style="width:81.36rpx;height: 81.36rpx;" wx:if="{{item.shouqian_price||item.yishou}}"></image>
+                            <image src="https://wsgroup.hmset.com/images/wjtq/other/zhuanzhang.png" style="width:81.36rpx;height: 81.36rpx;" wx:else></image>
+                        </view>
+                        <view style="float:left;padding-top: 8px;width:335rpx;" wx:if="{{isAndroid}}">
+                            <view style="margin-top:7rpx;font-size:14px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+                                <text wx:if="{{item.shouqian_price}}">已收钱</text>
+                                <text wx:elif="{{item.zhuanzhang_price&&!item.yishou}}">{{item.zhuanzhang_shuoming}}</text>
+                                <text wx:else>已被领取
+                  <text hidden="{{!item.zhuanzhang_shuoming}}">-</text>{{item.zhuanzhang_shuoming}}</text>
+                            </view>
+                            <view style="font-size:12px;">
+                                <text>¥</text>
+                                <text style="margin-left: 6rpx;">{{item.zhuanzhang_price?item.zhuanzhang_price:item.shouqian_price}}</text>
+                            </view>
+                        </view>
+                        <view style="float:left;padding-top: 5px;width:335rpx;" wx:else>
+                            <view style="font-size:19px;">
+                                <text>¥</text>
+                                <text style="margin-left: 6rpx;">{{item.zhuanzhang_price?item.zhuanzhang_price:item.shouqian_price}}</text>
+                            </view>
+                            <view style="font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                                <text wx:if="{{item.shouqian_price}}">已收钱</text>
+                                <text wx:elif="{{item.zhuanzhang_price&&!item.yishou}}">{{item.zhuanzhang_shuoming}}</text>
+                                <text wx:else>已被领取
+                  <text hidden="{{!item.zhuanzhang_shuoming}}">-</text>{{item.zhuanzhang_shuoming}}</text>
+                            </view>
+                        </view>
+                        <view style="clear: both;"></view>
+                    </view>
+                    <view class="flex_col_center" style="font-size:10px;height: 16px;line-height:16px;color: #9c9c9c;padding-left: 10px;background-color: #fff;border-radius:0 0 4.5px 4.5px;">
+                        <view>微信转账</view>
+                    </view>
+                </view>
+            </view>
+        </messge-item-right>
+        <messge-item-right avatar="{{item.avatar}}" backgroundColor="{{item.typeIndex==0&&!item.yilingwan?'#fa9e3b':'#ffd09c'}}" data-index="{{index}}" wx:if="{{item.hongbao_price&&item.typeIndex==0}}">
+            <view slot="content">
+                <view style="width:460rpx;float:left;">
+                    <view style="font-size: 16px;height:129.35rpx;word-wrap:break-word ;color: #fff;background-color:{{item.typeIndex==0&&!item.yilingwan?'#fa9e3b':'#ffd09c'}} ;border-radius: 9rpx 9rpx 0 0;">
+                        <view style="float:left;padding: 24rpx 19.82rpx 24rpx 19.82rpx;width:81.36rpx;height: 81.36rpx;">
+                            <image src="https://wsgroup.hmset.com/images/wjtq/other/fahongbao.png" style="width:67.8rpx;height: 81.32rpx;" wx:if="{{item.typeIndex==0&&!item.yilingwan}}"></image>
+                            <image src="https://wsgroup.hmset.com/images/wjtq/other/chaihongbao.png" style="width:67.8rpx;height: 81.32rpx;" wx:else></image>
+                        </view>
+                        <view style="float:left;padding-top: 12rpx;width:335rpx;">
+                            <view style="font-size:16px;margin-top:7rpx;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                                <text wx:if="{{item.typeIndex==1}}">{{item.hongbao_shuoming}}</text>
+                                <text wx:elif="{{item.typeIndex==0&&item.yilingwan}}">{{item.hongbao_shuoming}}</text>
+                                <text wx:else>{{item.hongbao_shuoming}}</text>
+                            </view>
+                            <view style="font-size:12px;">
+                                <view wx:if="{{item.typeIndex==1}}">红包已领取</view>
+                                <view wx:elif="{{item.typeIndex==0&&item.yilingwan}}">红包已被领完</view>
+                                <view wx:else>领取红包</view>
+                            </view>
+                        </view>
+                        <view style="clear: both;"></view>
+                    </view>
+                    <view class="flex_col_center" style="font-size:12px;height: 39.64rpx;color: #9c9c9c;padding-left: 20.86rpx;background-color: #fff;border-radius:0 0 9rpx 9rpx;">
+                        <view>微信红包</view>
+                    </view>
+                </view>
+            </view>
+        </messge-item-right>
+        <view catchtap="operateMessage" class="c_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:elif="{{item.hongbao_price&&item.typeIndex==1}}">
+            <view class="flex_col_center" style="border-radius: 9rpx;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color: #fff;height:48rpx;background-color:#cecece;font-size:12px;padding:0 23.99rpx;">
+                <image src="https://wsgroup.hmset.com/images/wjtq/other/fahongbao.png" style="width:29.2rpx;height: 35.46rpx;padding-right:19.82rpx;"></image>
+                <text>你</text>领取了
+        <text>自己</text>发的
+        <text style="color: #fd9931;">红包</text>
+            </view>
+        </view>
+        <view catchtap="operateMessage" class="b_flex end_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:elif="{{item.is_video}}">
+            <view class="chat-container chat-container__right">
+                <view style="position: relative;">
+                    <view class="a_flex" style="background-color: #a2e65b;float:left;border-radius: 9rpx;padding: 0 20.86rpx;height: 78.23rpx;">
+                        <view style="padding-right:12.52rpx;font-size: 16px;" wx:if="{{item.statusIndex==0}}">通话时长</view>
+                        <view style="padding-right:12.52rpx;font-size: 16px;" wx:if="{{item.statusIndex==1}}">已取消</view>
+                        <view style="padding-right:12.52rpx;font-size: 16px;" wx:if="{{item.statusIndex==2}}">已拒绝</view>
+                        <view style="padding-right:12.52rpx;font-size: 16px;" wx:if="{{item.statusIndex==3}}">对方已取消</view>
+                        <view style="padding-right:12.52rpx;font-size: 16px;" wx:if="{{item.statusIndex==4}}">对方已拒绝</view>
+                        <view style="padding-right:25.03rpx;font-size: 16px;" wx:if="{{item.statusIndex==0}}">{{item.videoLength}}</view>
+                        <image src="https://wsgroup.hmset.com/images/wjtq/other/shipinliao2.png" style="width:43.81rpx;height: 20.86rpx;" wx:if="{{item.typeIndex==0}}"></image>
+                        <image src="https://wsgroup.hmset.com/images/wjtq/other/yuyinliao2.png" style="width:43.81rpx;height: 18.78rpx;" wx:else></image>
+                    </view>
+                </view>
+                <view class="chat-arrow__right" style="border-left-color: #A0E75A"></view>
+                <view class="chat-arrow-border chat-arrow-border__right"></view>
+            </view>
+            <view class="message-user-avatar avatar-right">
+                <image lazyload="true" mode="aspectFill" src="{{item.avatar}}"></image>
+                <view class="avatar-shade"></view>
+            </view>
+        </view>
+        <view catchtap="operateMessage" class="b_flex end_flex" data-index="{{index}}" style="margin-top: 28.2rpx;" wx:elif="{{item.linkTitle}}">
+            <view class="chat-container chat-container__right">
+                <view style="position: relative;">
+                    <view class="b_flex" style="position: relative;">
+                        <view class="a_flex">
+                            <view style="margin-right:12rpx;" wx:if="{{item.isFail}}">
+                                <image src="https://wsgroup.hmset.com/images/wjtq/other/fasongshibai.png" style="width:44rpx;height: 44rpx;"></image>
+                            </view>
+                            <view style="width:460rpx;">
+                                <view style="font-size: 16px;background-color:#fff ;border-radius: 9rpx;padding:25.03rpx 18.78rpx 22.95rpx 21.9rpx">
+                                    <view style="color:#000;line-height:20px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;">{{item.linkTitle}}</view>
+                                    <view class="flex_row" style="margin-top: 13.56rpx;">
+                                        <view class="flex_all" style="overflow:hidden;font-size:12px;line-height:16px;color:#8f8f8f;text-overflow:ellipsis;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;">{{item.linkContent}}</view>
+                                        <view style="width: 89.71rpx;">
+                                            <image mode="aspectFill" src="{{item.linkAvatar?item.linkAvatar:'https://wsgroup.hmset.com/images/wjtq/other/link.png'}}" style="width: 89.71rpx;height: 89.71rpx;display: block;float: right;"></image>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="chat-arrow__right"></view>
+                <view class="chat-arrow-border chat-arrow-border__right"></view>
+            </view>
+            <view class="message-user-avatar avatar-right">
+                <image lazyload="true" mode="aspectFill" src="{{item.avatar}}"></image>
+                <view class="avatar-shade"></view>
+            </view>
+        </view>
+    </block>
+</template>

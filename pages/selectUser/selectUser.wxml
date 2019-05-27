@@ -1,0 +1,69 @@
+<import src="../item/userItem.wxml"></import>
+<import src="../item/emptyList.wxml"></import>
+<import src="/zanui/tab/index.wxml"></import>
+<view class="container">
+    <template is="zan-tab" data="{{tab:tabs,componentId:'tabs'}}"></template>
+    <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" size="14" type="search"></icon>
+                <input bindinput="inputTyping" class="weui-search-bar__input" confirmType="search" focus="{{inputShowed}}" placeholder="搜索" type="text" value="{{inputVal}}"></input>
+                <view bindtap="clearInput" class="weui-icon-clear" wx:if="{{inputVal.length>0}}">
+                    <icon size="14" type="clear"></icon>
+                </view>
+            </view>
+            <label bindtap="showInput" class="weui-search-bar__label" hidden="{{inputShowed}}">
+                <icon class="weui-icon-search" size="14" type="search"></icon>
+                <view class="weui-search-bar__text">搜索</view>
+            </label>
+        </view>
+        <view bindtap="hideInput" class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}">取消</view>
+    </view>
+    <view class="weui-cells searchbar-result" wx:if="{{searchResult.length>0&&inputVal.length>0}}">
+        <view bindtap="selectUser" class="weui-cell" data-avatar="{{item.avatar}}" data-name="{{item.name}}" hoverClass="weui-cell_active" wx:for="{{searchResult}}" wx:key="*this">
+            <image src="{{item.avatar}}?imageView2/2/w/150" style="width: 2em;height: 2em;margin-right: 0.6em;"></image>
+            <view class="weui-cell__bd">
+                <view>{{item.name}}</view>
+            </view>
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/zuoshangjiantou.png" style="width: 2em;height: 2em;margin-right: 0.6em;"></image>
+        </view>
+    </view>
+    <view class="weui-cells searchbar-result" wx:elif="{{inputVal.length>0}}">
+        <view class="weui-cell" hoverClass="weui-cell_active">
+            <view class="weui-cell__bd">
+                <view>木有这个人呢</view>
+            </view>
+        </view>
+    </view>
+    <view class="weui-cells searchbar-result" wx:if="{{inputVal.length==0&&wuserHistory.length>0}}">
+        <view class="weui-cell" hoverClass="weui-cell_active">
+            <view class="weui-cell__bd">
+                <view style="font-weight: 700;">历史搜索</view>
+            </view>
+        </view>
+        <view bindtap="selectUser" class="weui-cell" data-avatar="{{item.avatar}}" data-name="{{item.name}}" hoverClass="weui-cell_active" wx:for="{{wuserHistory}}" wx:key="*this">
+            <image src="{{item.avatar}}?imageView2/2/w/150" style="width: 2em;height: 2em;margin-right: 0.6em;"></image>
+            <view class="weui-cell__bd">
+                <view>{{item.name}}</view>
+            </view>
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/zuoshangjiantou.png" style="width: 2em;height: 2em;margin-right: 0.6em;"></image>
+        </view>
+    </view>
+    <block wx:if="{{list.length>0}}">
+        <view class="grid-view">
+            <template is="user-item" data="{{item:item}}" wx:for="{{list}}" wx:for-index="idx" wx:key="{{item.idx}}"></template>
+        </view>
+        <view class="">
+            <view class="weui-loadmore" wx:if="{{hasMore}}">
+                <view class="weui-loading"></view>
+                <view class="weui-loadmore__tips">正在加载</view>
+            </view>
+            <view class="weui-loadmore weui-loadmore_line" wx:elif="{{list.length>9}}">
+                <view class="weui-loadmore__tips weui-loadmore__tips_in-line">没有更多啦...</view>
+            </view>
+        </view>
+    </block>
+    <view class="weui-tab__content" wx:elif="{{list.length==0}}">
+        <template is="empty_list" data="{{title:'暂时没有内容呢'}}"></template>
+    </view>
+</view>

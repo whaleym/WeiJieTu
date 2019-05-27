@@ -1,0 +1,227 @@
+<import src="/zanui/toast/index.wxml"></import>
+<guide bind:confirm="guideConfirm" guideParams="{{guideParams}}" wx:if="{{showContactMenu}}"></guide>
+<view wx:if="{{type=='share_success'}}">
+    <view class="page">
+        <view class="weui-msg">
+            <view class="weui-msg__icon-area">
+                <icon size="93" type="success"></icon>
+            </view>
+            <view class="weui-msg__text-area">
+                <view class="weui-msg__title">感谢分享</view>
+                <view class="weui-msg__desc">我们会在8小时内审核，审核通过后会显示在『发现』页面哦</view>
+            </view>
+            <view class="weui-msg__opr-area">
+                <view class="weui-btn-area">
+                    <button bindtap="switchTab" class="weui-btn" data-url="/pages/share/share" type="primary">返回</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:if="{{type=='vip'}}">
+    <view class="page">
+        <view style="margin: 25px 0;" wx:if="{{platform!='ios'}}">
+            <view class="flex_center">
+                <text>终身永久VIP</text>
+                <text style="margin-left: 6px;text-decoration: line-through;white-space: nowrap;color: #999;font-size: 12pt;">198元</text>
+                <text style="font-size: 24px;margin-left: 6px;color: #d7282d;">128元</text>
+            </view>
+            <view class="flex_center">
+                <text>365天VIP</text>
+                <text style="margin-left: 6px;text-decoration: line-through;white-space: nowrap;color: #999;font-size: 12pt;">98元</text>
+                <text style="font-size: 24px;margin-left: 6px;color: #d7282d;">68元</text>
+            </view>
+            <view class="flex_center">
+                <text>30天VIP</text>
+                <text style="margin-left: 6px;text-decoration: line-through;white-space: nowrap;color: #999;font-size: 12pt;">68元</text>
+                <text style="font-size: 24px;margin-left: 6px;color: #d7282d;">48元</text>
+            </view>
+            <view class="flex_center">
+                <text>7天体验VIP</text>
+                <text style="margin-left: 6px;text-decoration: line-through;white-space: nowrap;color: #999;font-size: 12pt;">45元</text>
+                <text style="font-size: 24px;margin-left: 6px;color: #d7282d;">25元</text>
+            </view>
+        </view>
+        <view style="margin: 20rpx;">
+            <view class="flex_row_center">
+                <image src="https://wsgroup.hmset.com/images/wjtq/other/quanjiesuo_vip.png" style="width: 180rpx;height: 180rpx;margin-right:20rpx;"></image>
+                <view style="flex:1;">
+                    <view style="font-weight: 700;font-size: 18px;margin-bottom: 8px;">全解锁</view>
+                    <view>解锁所有付费功能</view>
+                    <view style="margin-top:10px;">并且同时开通以下小程序的VIP功能：</view>
+                    <navigator appId="wxf222b478fe10dbe0" target="miniProgram" wx:if="{{canUse_navigatorTarget}}">
+                        <view class="flex_col_center" style="justify-content:space-around;flex-wrap:wrap;">
+                            <view class="column_flex" style="width:127rpx;">
+                                <view class="flex_center" hoverClass="weui-grid_active" style="width:80rpx;height:80rpx;border-radius:50rpx;background-color: #a1dc84;">
+                                    <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/xiaozhuangx1_icon.png" style="width:60rpx;height:60rpx;"></image>
+                                </view>
+                                <view>
+                                    <view class="weui-grid__label">制作产品营销、表白、恶搞图片&视频</view>
+                                </view>
+                            </view>
+                        </view>
+                    </navigator>
+                    <view class="flex_col_center" style="justify-content:space-around;flex-wrap:wrap;" wx:else>
+                        <view bindtap="navigate" class="column_flex" data-appid="wxf222b478fe10dbe0" data-preview="https://wsgroup.hmset.com/images/wjtq/other/xiaozhuangx_ma.jpg" style="width:127rpx;">
+                            <view class="flex_center" hoverClass="weui-grid_active" style="width:80rpx;height:80rpx;border-radius:50rpx;background-color: #a1dc84;">
+                                <image class="weui-grid__icon" src="https://wsgroup.hmset.com/images/wjtq/other/xiaozhuangx1_icon.png" style="width:60rpx;height:60rpx;"></image>
+                            </view>
+                            <view>
+                                <view class="weui-grid__label">制作产品营销、表白、恶搞图片&视频</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="flex_row_center" style="margin-top:15px;">
+                <image src="https://wsgroup.hmset.com/images/wjtq/other/juhuasuan_vip.png" style="width: 180rpx;height: 180rpx;margin-right:20rpx;"></image>
+                <view style="flex:1;">
+                    <view style="font-weight: 700;font-size: 18px;margin-bottom: 8px;">巨划算</view>
+                    <view>限时活动半价，活动结束之后恢复原价</view>
+                </view>
+            </view>
+            <view class="flex_row_center" style="margin-top:15px;">
+                <image src="https://wsgroup.hmset.com/images/wjtq/other/zhuanshufuwu_vip.png" style="width: 180rpx;height: 180rpx;margin-right:20rpx;"></image>
+                <view style="flex:1;">
+                    <view style="font-weight: 700;font-size: 18px;margin-bottom: 8px;">专属服务</view>
+                    <view>会员专属一对一客服，高效解决问题</view>
+                </view>
+            </view>
+        </view>
+        <view>
+            <button catchtap="openContact" openType="contact" sessionFrom="vip_goumai" style="margin-top:20px;width: 80%;position:fixed;bottom: 10px;left: 10%;" type="primary" wx:if="{{platform=='ios'}}">联系客服领取</button>
+            <block wx:else>
+                <button catchtap="buy" style="margin-top:20px;width: 80%;position:fixed;bottom: 10px;left: 10%;" type="primary" wx:if="{{isLogin&&user}}">立即抢购</button>
+                <login-button bind:success="buy" style="margin-top:20px;width: 80%;position:fixed;bottom: 10px;left: 10%;" type="primary" wx:else>立即抢购</login-button>
+            </block>
+        </view>
+    </view>
+</view>
+<view wx:if="{{type=='contactvip'}}">
+    <view class="page">
+        <view class="weui-msg">
+            <view class="weui-msg__icon-area">
+                <icon size="93" type="success"></icon>
+            </view>
+            <view class="weui-msg__text-area">
+                <view class="weui-msg__title">点击下面按钮联系客服，抢购VIP</view>
+            </view>
+            <view class="weui-msg__opr-area">
+                <view class="weui-btn-area">
+                    <button catchtap="openContact" openType="contact" sessionFrom="vip_goumai" style="margin-top:20px;width: 80%;position:fixed;bottom: 10px;left: 10%;" type="primary">联系客服</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:if="{{type=='vipsuccess'}}">
+    <view class="page">
+        <view class="weui-msg">
+            <view class="weui-msg__icon-area">
+                <icon size="93" type="success"></icon>
+            </view>
+            <view class="weui-msg__text-area">
+                <view class="weui-msg__title">VIP购买成功</view>
+                <view class="weui-msg__desc" style="margin-top: 15px;">您已解锁我们所有小程序的付费功能</view>
+                <view class="weui-msg__desc" style="margin-top: 5px;">请点击下面按钮添加您的专属客服</view>
+            </view>
+            <view class="weui-msg__opr-area">
+                <view class="weui-btn-area">
+                    <button openType="contact" sessionFrom="mine_guanzhu" style="margin-top:30px;width: 80%;margin-left: 10%;" type="default">关注我们</button>
+                    <button openType="contact" sessionFrom="vip_goumai" style="margin-top:20px;width: 80%;margin-left: 10%;" type="primary">联系专属客服</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:elif="{{type=='tixian'}}">
+    <view class="page">
+        <view class="weui-msg">
+            <view class="weui-msg__icon-area">
+                <icon size="93" type="info"></icon>
+            </view>
+            <view class="weui-msg__text-area">
+                <view class="weui-msg__title">请联系客服给您发红包提现</view>
+            </view>
+            <view class="weui-msg__opr-area">
+                <view class="weui-btn-area">
+                    <button class="weui-btn" openType="contact" style="width: 80%;" type="primary">联系客服</button>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:elif="{{type=='video_help'}}">
+    <view class="page">
+        <video objectFit="cover" src="http://pics-1254221309.cossh.myqcloud.com/zhizuoqi_help.mp4" style="width:750rpx;height:1375rpx;"></video>
+    </view>
+</view>
+<view wx:elif="{{type=='video_help_woshishui'}}">
+    <view class="page">
+        <video objectFit="cover" src="http://pics-1254221309.cossh.myqcloud.com/l053925g6ra.mp4" style="width:750rpx;height:424.6rpx;"></video>
+    </view>
+</view>
+<view wx:elif="{{type=='tuijian'}}">
+    <view class="page" style="margin-top: 30rpx;">
+        <view class="page__bd">
+            <view class="weui-panel">
+                <view class="weui-panel__bd">
+                    <view class="weui-media-box weui-media-box_small-appmsg">
+                        <view class="weui-cells weui-cells_after-title">
+                            <view catchtap="tiaozhuan" class="weui-cell weui-cell_access" data-id="{{item.id}}" hoverClass="weui-cell_active" wx:for="{{tuijian}}" wx:for-index="idx" wx:key="{{item.idx}}">
+                                <view class="weui-cell__hd">
+                                    <image src="{{item.avatar}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                                </view>
+                                <view class="weui-cell__bhd" style="width: 250rpx;">{{item.name}}</view>
+                                <view class="weui-cell__ft weui-cell__ft_in-access">{{item.desc}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:elif="{{type=='help'}}">
+    <view class="page" style="margin-top: 30rpx;">
+        <view class="page__bd">
+            <view class="weui-panel">
+                <view class="weui-panel__bd">
+                    <view class="weui-media-box weui-media-box_small-appmsg">
+                        <view class="weui-cells weui-cells_in-small-appmsg">
+                            <navigator class="weui-cell weui-cell_access" hoverClass="weui-cell_active" url="/pages/about/about?type=video_help">
+                                <view class="weui-cell__hd"></view>
+                                <view class="weui-cell__bd weui-cell_primary">
+                                    <view>视频说明</view>
+                                </view>
+                                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                            </navigator>
+                            <navigator class="weui-cell weui-cell_access" hoverClass="weui-cell_active" url="/pages/webview/webview?key=dashangtu_help">
+                                <view class="weui-cell__hd"></view>
+                                <view class="weui-cell__bd weui-cell_primary">
+                                    <view>红包照片/视频使用说明</view>
+                                </view>
+                                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                            </navigator>
+                            <navigator class="weui-cell weui-cell_access" hoverClass="weui-cell_active" url="/pages/webview/webview?key=weishengcheng_help">
+                                <view class="weui-cell__hd"></view>
+                                <view class="weui-cell__bd weui-cell_primary">
+                                    <view>朋友圈制作使用说明</view>
+                                </view>
+                                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                            </navigator>
+                            <navigator class="weui-cell weui-cell_access" hoverClass="weui-cell_active" url="/pages/webview/webview?key=duihuajietu_help">
+                                <view class="weui-cell__hd"></view>
+                                <view class="weui-cell__bd weui-cell_primary">
+                                    <view>微信聊天页制作使用说明</view>
+                                </view>
+                                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                            </navigator>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<template is="zan-toast" data="{{zanToast:zanToast}}"></template>

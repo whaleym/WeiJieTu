@@ -1,0 +1,8 @@
+{
+    "enablePullDownRefresh": false,
+    "navigationBarBackgroundColor": "#ffffff",
+    "usingComponents": {
+        "customer-service": "../service/service",
+        "login-button": "/components/loginButton/loginButton"
+    }
+}

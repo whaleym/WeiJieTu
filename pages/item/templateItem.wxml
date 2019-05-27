@@ -1,0 +1,13 @@
+<template name="big-item-with-icon">
+    <view class="bigItem">
+        <view>
+            <image class="avatar" lazyload="true" mode="aspectFit" src="{{avatar}}{{gridPicSize}}" wx:if="{{avatar}}"></image>
+            <image class="avatar" lazyload="true" mode="aspectFit" src="{{item.avatar}}{{gridPicSize}}" wx:else></image>
+        </view>
+        <view class="name">{{item.name}}</view>
+        <block wx:if="{{item.price&&0}}">
+            <view class="paster" style="border-right: 40px solid #FF7F23;"></view>
+            <view class="paster_text">{{item.price}}元</view>
+        </block>
+    </view>
+</template>

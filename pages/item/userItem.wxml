@@ -1,0 +1,6 @@
+<template name="user-item">
+    <view bindtap="selectUser" class="user" data-avatar="{{item.avatar}}" data-name="{{item.name}}">
+        <image lazyload="true" mode="aspectFill" src="{{item.avatar}}?imageView2/1/w/180/h/180"></image>
+        <text>{{item.name}}</text>
+    </view>
+</template>

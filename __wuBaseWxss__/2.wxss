@@ -1,0 +1,173 @@
+.chat-container {
+    position: relative;
+}
+
+.chat-container__right {
+    padding-right: 10rpx;
+}
+
+.chat-container__left {
+    padding-left: 10rpx;
+}
+
+.content-container {
+    position: relative;
+    border-radius: 9rpx;
+    overflow: hidden;
+    min-height: 80rpx;
+    box-sizing: border-box;
+}
+
+.content-container .shade-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 9rpx;
+    box-sizing: border-box;
+    border: 1rpx solid rgba(0,0,0,0.2);
+}
+
+.content-container .shade-android {
+    border-width: 0;
+}
+
+.chat-arrow-border {
+    position: absolute;
+    z-index: 2;
+    width: 12rpx;
+    height: 20rpx;
+    top: 30rpx;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
+.chat-arrow-border__right {
+    right: 0;
+    background-position-x: left;
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTZweCIgaGVpZ2h0PSIzMXB4IiB2aWV3Qm94PSIwIDAgMTYgMzEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQxLjIgKDM1Mzk3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5QYXRoPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IlN5bWJvbHMiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1vcGFjaXR5PSIwLjM1Ij4KICAgICAgICA8ZyBpZD0iUGF0aCIgc3Ryb2tlPSIjMDAwMDAwIj4KICAgICAgICAgICAgPHBvbHlsaW5lIHBvaW50cz0iMS4zOTE2NTUwMSAxLjY0Njc2MjQyIDE1LjQ3Nzc3OTkgMTUuNzIwNDU1MiAxLjM4Mzc2OTI0IDI5LjgyNjkwNSI+PC9wb2x5bGluZT4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==");
+}
+
+.chat-arrow-border__left {
+    left: 0;
+    background-position-x: right;
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTZweCIgaGVpZ2h0PSIzMXB4IiB2aWV3Qm94PSIwIDAgMTYgMzEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQxLjIgKDM1Mzk3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5QYXRoPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IlN5bWJvbHMiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1vcGFjaXR5PSIwLjM1Ij4KICAgICAgICA8ZyBpZD0iUGF0aCIgc3Ryb2tlPSIjMDAwMDAwIj4KICAgICAgICAgICAgPHBvbHlsaW5lIHRyYW5zZm9ybT0idHJhbnNsYXRlKDguNDMwNzc1LCAxNS43MzY4MzQpIHJvdGF0ZSgxODAuMDAwMDAwKSB0cmFuc2xhdGUoLTguNDMwNzc1LCAtMTUuNzM2ODM0KSAiIHBvaW50cz0iMS4zOTE2NTUwMSAxLjY0Njc2MjQyIDE1LjQ3Nzc3OTkgMTUuNzIwNDU1MiAxLjM4Mzc2OTI0IDI5LjgyNjkwNSI+PC9wb2x5bGluZT4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==");
+}
+
+.arrow-border-android {
+    background-image: none;
+}
+
+.chat-arrow__right {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 18rpx;
+    width: 0;
+    height: 0;
+    border-top: 22rpx solid transparent;
+    border-left: 24rpx solid white;
+    border-bottom: 22rpx solid transparent;
+}
+
+.chat-arrow__left {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 18rpx;
+    width: 0;
+    height: 0;
+    border-top: 22rpx solid transparent;
+    border-right: 24rpx solid white;
+    border-bottom: 22rpx solid transparent;
+}
+
+.space-view {
+    width: 1rpx;
+    height: 100%;
+    float: left;
+}
+
+.space-view-vertical {
+    width: 100%;
+    height: 1rpx;
+}
+
+.message-user-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    position: relative;
+}
+
+.avatar-left {
+    margin: 0 10rpx 0 20rpx;
+}
+
+.avatar-right {
+    margin: 0 20rpx 0 10rpx;
+}
+
+.message-user-avatar image {
+    width: 100%;
+    height: 100%;
+}
+
+.message-user-avatar .avatar-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+    background-color: rgba(0,0,0,0.003);
+    border: 1rpx solid rgba(0,0,0,0.01);
+}
+
+.time-black {
+    color: #000;
+    background-color: rgba(255,255,255,0.6);
+}
+
+.time-white {
+    color: #fff;
+    background-color: #cecece;
+}
+
+.weixin_dialog,.my_weixin_dialog {
+    position: relative;
+    border-radius: 9rpx;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.pic-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 9rpx;
+    box-sizing: border-box;
+    z-index: 2;
+    border: 1rpx solid rgba(0,0,0,0.08);
+}
+
+.left-pic-container {
+    margin-left: 5px;
+}
+
+.right-pic-container {
+    margin-right: 5px;
+}
+
+.weixin_triangle {
+    width: 0px;
+    height: 0px;
+    border-width: 10.43rpx;
+    margin-left: -10.43rpx;
+    border-style: solid;
+    border-color: transparent #a2e65b transparent transparent;
+}

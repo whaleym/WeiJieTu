@@ -1,0 +1,10 @@
+<template name="upload-item">
+    <view class="uploadBG">
+        <image class="pic" lazyload="true" src="{{item.url}}" wx:if="{{item.url}}"></image>
+        <image class="pic" src="{{item.path}}" wx:elif="{{item.path}}"></image>
+        <view class="cover" wx:if="{{item.state==1||item.state==3}}"></view>
+        <view class="state" wx:if="{{item.state==1}}">上传中..</view>
+        <view class="state" wx:if="{{item.state==3}}">上传失败</view>
+        <image bindtap="{{deleteFunc}}" class="delete" data-index="{{index}}" src="https://wsgroup.hmset.com/images/wjtq/other/delete-image.png" wx:if="{{item.state==2||item.state==3}}"></image>
+    </view>
+</template>

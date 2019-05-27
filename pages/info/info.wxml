@@ -1,0 +1,60 @@
+<import src="/zanui/toast/index.wxml"></import>
+<view class="container page__bd">
+    <view class="weui-cells__title"></view>
+    <form bindsubmit="formSubmit" id="formSubmit" reportSubmit="true">
+        <view class="weui-cells__title"></view>
+        <view class="weui-cells weui-cells_after-title">
+            <view bindtap="avatarMenu" class="weui-cell weui-cell_input" style="height:60px;">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">头像</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <image mode="aspectFill" src="{{info.avatar?info.avatar:'https://wsgroup.hmset.com/images/wjtq/other/default_avatar.png'}}" style="width: 50px;height: 50px;display: block;float: right;"></image>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">昵称</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input bindinput="bindName" class="weui-input" name="name" placeholder="请输入昵称" style="text-align: right;" value="{{info.name}}"></input>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells__title"></view>
+        <view class="weui-cells weui-cells_after-title">
+            <view bindtap="avatarBanner" class="weui-cell weui-cell_input" style="height:120px;">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">封面</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <image mode="aspectFill" src="{{info.banner?info.banner:'https://wsgroup.hmset.com/images/wjtq/other/banner.png'}}" style="width: 121px;height: 100px;display: block;float: right;"></image>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells__title"></view>
+        <view class="weui-cells weui-cells_after-title">
+            <view bindtap="avatarNews" class="weui-cell weui-cell_input" style="height:44px;">
+                <view class="weui-cell__hd">
+                    <view class="weui-label" style="width:135px;">消息头像(选填)</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <image mode="aspectFill" src="{{info.newsAvatar?info.newsAvatar:'https://wsgroup.hmset.com/images/wjtq/other/xiaoxi.png'}}" style="width: 30px;height: 30px;display: block;float: right;"></image>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label" style="width:135px;">未读消息数(选填)</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input bindinput="bindNews" class="weui-input" name="news" placeholder="请输入消息数量" style="text-align: right;" type="number" value="{{info.news}}"></input>
+                </view>
+            </view>
+        </view>
+        <button class="weui-btn" disabled="{{disabled}}" formType="submit" style="width: 80%;" type="primary">保存</button>
+    </form>
+</view>
+<template is="zan-toast" data="{{zanToast:zanToast}}"></template>

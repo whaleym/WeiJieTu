@@ -1,0 +1,15 @@
+page {
+    background-color: #f2f2f2;
+}
+
+.page__bd {
+    padding-bottom: 0;
+}
+.share_btn{
+    width:240px;
+    height:50px;
+    margin-bottom:40px;
+    border-radius:10px;
+    line-height:50px;
+    font-size:40rpx;
+}

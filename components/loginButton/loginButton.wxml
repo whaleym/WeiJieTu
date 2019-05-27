@@ -1,0 +1,3 @@
+<button bindgetuserinfo="handleGetUserInfo" class="{{(clearButton?'clear-button':'')+' '+(clearType?'clear-type':'')}}" disabled="{{disabled}}" lang="zh_CN" openType="getUserInfo" plain="{{plain}}" size="{{size}}" type="{{type}}">
+    <slot></slot>
+</button>

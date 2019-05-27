@@ -1,0 +1,36 @@
+<import src="../item/newsItem.wxml"></import>
+<import src="../item/empty.wxml"></import>
+<import src="/zanui/toast/index.wxml"></import>
+<import src="../../wux/dialog/dialog.wxml"></import>
+<template is="dialog" data="{{...$wux.dialog}}"></template>
+<view bindlongtap="popupAdd" class="container page__bd">
+    <template is="news_item" data="{{mode:'detail',isAndroid:isAndroid,padding:padding,index:99,item:detail,oneSize:oneSize,twoSize:twoSize,pixelRatio:pixelRatio,threeSize:threeSize}}" wx:if="{{detail.content}}"></template>
+    <view class="flex_center" style="height:1000rpx;" wx:else>
+        <view class="weui-msg__icon-area" style="">
+            <image lazyload="true" src="https://wsgroup.hmset.com/images/wjtq/other/nocontent_list.png" style="width: 588rpx;height:269rpx;"></image>
+        </view>
+    </view>
+    <view bindtap="operate" class="flex_row" id="input-bg" style="position:fixed;bottom:0;width:100%;height:88.2rpx;background-color:#fafafa;border-top: 1rpx solid #cecece;" wx:if="{{detail.content}}">
+        <view disabled="true" style="height:29px;line-height:29px;padding:0 18.1rpx;width:100%;border-radius:4px;border:1rpx solid #ddd;background-color: #fcfcfc;margin: 8px 0 7px 10px;color: #999;">评论</view>
+        <view style="width: 70rpx;margin: 8px 37rpx 17rpx 27rpx;">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/biaoqinga.png" style="width:57.64rpx;height: 57.64rpx;"></image>
+        </view>
+    </view>
+    <navigator style="position:fixed;right:0;bottom:88.2rpx;width:100px;height:100px;" url="/pages/about/about?type=vip" wx:if="{{!isVip&&platform!='ios'}}">
+        <image src="/styles/watermark.png" style="width:100%;height:100%;"></image>
+    </navigator>
+</view>
+<view bindtap="close" class="drawer_screen" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">
+    <view class="drawer_content">
+        <view>点页面任何部分，修改该部分内容</view>
+        <view class="drawer_img">
+            <image src="https://wsgroup.hmset.com/images/wjtq/other/dianjitishi_1.jpg" style="width:500rpx;height:244rpx;"></image>
+        </view>
+        <view>制作完成之后，请用手机截屏来保存图片</view>
+    </view>
+    <view bindtap="close" style="position: absolute;right:-35rpx;top:-35rpx;">
+        <image src="https://wsgroup.hmset.com/images/wjtq/other/guanbi3.png" style="width:70rpx;height:70rpx;"></image>
+    </view>
+</view>
+<template is="zan-toast" data="{{zanToast:zanToast}}"></template>
